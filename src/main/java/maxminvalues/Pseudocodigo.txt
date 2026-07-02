@@ -1,0 +1,125 @@
+----- ALGORITMO MaximoMinimo -----
+
+1. meta():
+    Escribir("  Este programa imprime los valores maximos y minimos, 
+                y mas detalles de las variables primitivas en Java.
+                    - byte          - long
+                    - short         - float
+                    - int           - double 
+                    - boolean       - char ");
+
+2.1 byteData():
+    resultado = "  \nEspacio en bits: " + Byte.SIZE
+                    + "\nTamano en bytes: " + Byte.BYTES
+                    + "\nValor minimo: " + Byte.MIN_VALUE
+                    + "\nValor maximo: " + Byte.MAX_VALUE;
+    titulo = "BYTE INFORMACION";
+    llamar a resultados();
+
+2.2 shortData():
+    resultado = "  \nEspacio en bits: " + Short.SIZE
+                    + "\nTamano en bytes: " + Short.BYTES
+                    + "\nValor minimo: " + Short.MIN_VALUE
+                    + "\nValor maximo: " + Short.MAX_VALUE;
+    titulo = "SHORT INFORMACION";
+    llamar a resultados();
+
+2.3 intData():
+    resultado = "  \nEspacio en bits: " + Integer.SIZE
+                    + "\nTamano en bytes: " + Integer.BYTES
+                    + "\nValor minimo: " + Integer.MIN_VALUE
+                    + "\nValor maximo: " + Integer.MAX_VALUE;
+    titulo = "INTEGER INFORMACION";
+    llamar a resultados();
+
+2.4 longData():
+    resultado = "  \nEspacio en bits: " + Long.SIZE
+                    + "\nTamano en bytes: " + Long.BYTES
+                    + "\nValor minimo: " + Long.MIN_VALUE
+                    + "\nValor maximo: " + Long.MAX_VALUE;
+    titulo = "LONG INFORMACION";
+    llamar a resultados();
+
+2.5 floatData():
+    resultado = "  \nEspacio en bits: " + Float.SIZE
+                    + "\nTamano en bytes: " + Float.BYTES
+                    + "\nValor minimo: " + Float.MIN_VALUE
+                    + "\nValor maximo: " + Float.MAX_VALUE;
+    titulo = "FLOAT INFORMACION";
+    llamar a resultados();
+
+2.6 doubleData():
+    resultado = "\nEspacio en bits: " + Double.SIZE
+                + "\nTamano en bytes: " + Double.BYTES
+                + "\nValor minimo: " + Double.MIN_VALUE
+                + "\nValor maximo: " + Double.MAX_VALUE;
+    titulo = "DOUBLE INFORMACION";
+    llamar a resultados();
+
+2.7 charData():
+    resultado = "\nEspacio en bits: " + (int)Character.SIZE
+                    + "\nTamano en bytes: " + (int)Character.BYTES
+                    + "\nValor minimo: " + (int)Character.MIN_VALUE
+                    + "\nValor maximo: " + (int)Character.MAX_VALUE;
+    titulo = "CHARACTER INFORMACION";
+    llamar a resultados();
+
+2.8 booleanData():
+    resultado = "\nTipo de variable primitiva: " + Boolean.TYPE
+                + "\nValor predeterminado: " + Boolean.FALSE
+                + "\nValores posibles: " + Boolean.TRUE
+                + " y " + Boolean.FALSE;
+    titulo = "BOOLEAN INFORMACION";
+    llamar a resultados();
+
+4. resultados():
+    Escribir(titulo, resultado);
+
+5. main():
+    llamar a meta();
+    opcion = menu();
+
+    terminar mientras (opcion != -1 y opcion != 4) empezar
+
+        segun (opcion) empezar
+            caso 0:
+                llamar a byteData();
+                romper;
+            caso 1:
+                llamar a shortData();
+                romper;
+            caso 2:
+                llamar a intData();
+                romper;
+            caso 3:
+                llamar a longData();
+                romper;
+            caso 4:
+                llamar a floatData();
+                romper;
+            caso 5:
+                llamar a doubleData();
+                romper;
+            caso 6:
+                llamar a charData();
+                romper;
+            caso 7:
+                llamar a booleanData();
+                romper;
+        terminar segun
+
+        opcion = menu();
+
+    terminar mientras
+
+5.1 menu(): int
+    Escribir("0. Byte");
+    Escribir("1. Short");
+    Escribir("2. Int");
+    Escribir("3. Float");
+    Escribir("4. Double");
+    Escribir("5. Char");
+    Escribir("6. Boolean");
+    Escribir("7. SALIR");
+    opcion = ?;
+    regresar opcion;

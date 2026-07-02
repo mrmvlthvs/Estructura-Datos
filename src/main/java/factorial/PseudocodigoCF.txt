@@ -1,0 +1,95 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #35
+Fecha: 6 de junio de 2026
+
+===== ALGORITMO COMPUTE FACTORIAL (RECURSIVO CON VALIDACIÓN DE DESBORDAMIENTO) =====
+
+1. meta()
+    Escribir("Programa que permite calcular el factorial de un numero entero.")
+    Escribir("Ejemplo sacado y modificado del libro de Daniel Liang.")
+
+2. data()
+    isValid = falso
+    
+    mientras (no isValid) empezar
+        Escribir("Ingrese un numero entero positivo (Limite 0 - 20): ")
+        num = llamar isNum()
+        
+        si (num < 0) entonces empezar
+            Escribir("Ingrese unicamente valores positivos.")
+        terminar
+        sino si (num > 20) entonces empezar
+            Escribir("Error: El limite maximo para el tipo 'long' es 20. Intente de nuevo.")
+        terminar
+        sino empezar
+            isValid = verdadero
+        terminar
+    terminar mientras
+
+2.1. isNum()
+    run = verdadero
+    valorResultado = 0
+        
+    mientras (run) empezar
+        intentar empezar
+            aux = leer línea de texto de la terminal
+            valorResultado = convertir aux a entero
+            run = falso
+        terminar
+        capturar error de conversión empezar
+            Escribir("Error: Ingrese unicamente un numero entero valido: ")
+        terminar capturar
+    terminar mientras
+    retornar valorResultado
+
+2.2. isOption(msj)
+    run = verdadero
+    valorRetorno = verdadero
+        
+    mientras (run) empezar
+        Escribir(msj)
+        aux = leer línea de texto de la terminal (quitar espacios en blanco)
+        
+        si (aux es igual a "S" ignorando mayúsculas/minúsculas) entonces empezar
+            run = falso
+            valorRetorno = verdadero
+        terminar
+        sino si (aux es igual a "N" ignorando mayúsculas/minúsculas) entonces empezar
+            run = falso
+            valorRetorno = falso
+        terminar
+        sino empezar
+            Escribir("Ingrese unicamente 'S' o 'N'.")
+        terminar
+    terminar mientras
+    retornar valorRetorno
+
+3. factorial(n)
+    si (n es igual a 0) entonces empezar
+        retornar 1
+    terminar
+    sino empezar
+        retornar n * llamar factorial(n - 1)  // Llamada recursiva elemental
+    terminar
+
+4. resultado()
+    Escribir("El resultado de factorial de " + num + " es = " + llamar factorial(num))
+
+5. navegabilidad()
+    msj = "¿Desea probar con otro numero? S/n >>> "
+    run = verdadero
+    
+    llamar meta()
+    mientras (run) empezar
+        llamar data()
+        llamar resultado()
+        run = llamar isOption(msj)
+    terminar mientras
+    Escribir("FIN DEL PROGRAMA.")

@@ -1,0 +1,19 @@
+Juan Pablo Arredondo Escobar,24240853,14/05/2006,70,1.75
+Erika Sugey Becerra Andrade,25240166,21/09/2007,55,1.70
+Jesus Oswaldo Castro Ponce,24240424,03/11/2006,68,1.72
+Jesus Emmanuel Caudillo Soto,24240836,17/02/2006,72,1.74
+Juan Carlos Garcia Olvera,23240412,09/08/2005,80,1.78
+Luis Zaid Garcia Grower,25240037,30/06/2007,65,1.70
+Bryan Orlando Garcia Torres,24240755,12/01/2006,74,1.76
+Jorge Eduardo Garduño Zavala,24240556,25/04/2006,69,1.73
+Lizette Carolina Gonzalez Medina,24240746,08/10/2007,58,1.62
+Patricio Gerardo Guerrero Frausto,24240285,15/03/2006,77,1.80
+Leonel Martinez Trujillo,24240409,27/12/2005,73,1.75
+Marlene Ines Moreno Velazquez,25240024,08/03/2006,58,1.60
+Mauricio Magdiel Palomino Cervantes,24240774,19/07/2006,71,1.74
+Erick Raul Ramirez Aguirre,24240738,05/02/2006,75,1.77
+Luciano Romero Nuñez,25240224,22/09/2007,64,1.69
+Cristian Emmanuel Sanchez Perez,24240645,29/07/2006,65,1.70
+Josue Abraham Segura Garcia,25240230,11/05/2007,67,1.72
+Jaziel Ulises Valdez Arias,24240862,02/06/2006,70,1.73
+Mauricio Vilchis Molina,24240437,18/01/2006,76,1.79

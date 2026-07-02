@@ -1,0 +1,192 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #25
+Fecha: 20 de abril de 2026
+
+----- ALGORITMO QUICK SORT -----
+
+1. meta().
+    Escribir("Programa de ordenamiento de datos mediante el metodo Quick Sort.
+              Permite capturar datos por teclado o archivo, ordenarlos
+              e imprimirlos en terminal o en archivo.")
+
+2. data().
+    opcion ← menuCaptura()
+
+    segun(opcion) hacer
+        caso 0:
+            llamar a teclado()
+        caso 1:
+            llamar a archivo()
+    fin segun
+
+    si (datos ≠ nulo Y tamaño(datos) > 0) empezar
+        llamar a procesoOrdenar(datos)
+    fin si
+
+2.1 teclado().
+    Definir lista como lista vacía
+    dato ← 0
+
+    mientras (dato ≠ -1) empezar
+        Escribir("Ingrese un dato (-1 para terminar)")
+        dato ← leer entero
+
+        si (dato ≠ -1) entonces
+            agregar dato a lista
+        fin si
+    fin mientras
+
+    convertir lista a arreglo datos
+    Escribir("Datos capturados correctamente")
+
+2.2 archivo().
+    Seleccionar archivo de texto
+
+    si (archivo seleccionado) empezar
+        Definir lista como lista vacía
+
+        mientras (linea ← leer archivo) ≠ nulo empezar
+            linea ← limpiar(linea)
+
+            si (linea ≠ vacia) empezar
+                intentar
+                    dato ← convertir entero(linea)
+                    agregar dato a lista
+                capturar error
+                    Escribir("Dato inválido")
+                fin intentar
+            fin si
+        fin mientras
+
+        convertir lista a arreglo datos
+        Escribir("Datos cargados correctamente")
+    si_no empezar
+        Escribir("No se seleccionó archivo")
+    fin si
+
+3. procesoOrdenar(datos).
+    comparaciones ← 0
+    intercambios ← 0
+    llamar a quickSort(datos, 0, tamaño(datos)-1)
+
+    Escribir("Comparaciones: ", comparaciones)
+    Escribir("Intercambios: ", intercambios)
+
+3.1 quickSort(arr, low, high).
+    si (low < high) empezar
+        pi ← partition(arr, low, high)
+
+        llamar a quickSort(arr, low, pi - 1)
+        llamar a quickSort(arr, pi + 1, high)
+    fin si
+
+3.2 partition(arr, low, high).
+    pivot ← arr[high]
+    i ← low - 1
+    c ← 0
+    ic ← 0
+
+    para j desde low hasta high - 1 hacer
+        c ← c + 1
+
+        si (arr[j] ≤ pivot) empezar
+            i ← i + 1
+
+            intercambiar arr[i] con arr[j]
+            ic ← ic + 1
+        fin si
+    fin para
+
+    intercambiar arr[i+1] con arr[high]
+    ic ← ic + 1
+
+    comparaciones ← comparaciones + c
+    intercambios ← intercambios + ic
+
+    regresar (i + 1)
+
+4. resultado().
+    medio ← menuImpresion()
+
+    si (datos es nulo O vacío) empezar
+        Escribir("No hay datos para imprimir")
+        regresar
+    fin si
+
+    resultado ← ""
+
+    para i desde 0 hasta tamaño(datos)-1 hacer
+        resultado ← resultado + datos[i] + salto_linea
+    fin para
+
+    segun(medio) hacer
+        caso 0:
+            Escribir("===== DATOS ORDENADOS =====")
+            Escribir(resultado)
+        caso 1:
+            llamar a crearArchivo(resultado)
+    fin segun
+
+4.1 crearArchivo(resultado).
+    Seleccionar ubicación de guardado
+
+    si (usuario selecciona archivo) empezar
+        si (no termina en .txt) entonces
+            agregar ".txt"
+        fin si
+
+        escribir resultado en archivo
+        Escribir("Archivo guardado correctamente")
+    si_no empezar
+        Escribir("Guardado cancelado")
+    fin si
+
+5. navegabilidad().
+    llamar a meta()
+
+    mientras (verdadero) empezar
+        opcion ← menu()
+
+        si (opcion = -1 O opcion = 2) entonces
+            salir
+        fin si
+
+        segun(opcion) hacer
+            caso 0:
+                llamar a data()
+            caso 1:
+                si (datos es nulo O vacío) empezar
+                    Escribir("Capture datos primero")
+                si_no empezar
+                    llamar a resultado()
+                fin si
+        fin segun
+    fin mientras
+
+5.1 menu().
+    Escribir("1. Capturar datos")
+    Escribir("2. Imprimir")
+    Escribir("3. Salir")
+    opcion ← leer opcion
+    regresar opcion
+
+5.2 menuCaptura().
+    Escribir("1. Teclado")
+    Escribir("2. Archivo")
+    opcion ← leer opcion
+    regresar opcion
+
+5.3 menuImpresion().
+    Escribir("1. Imprimir en terminal")
+    Escribir("2. Imprimir en archivo")
+    opcion ← leer opcion
+    regresar opcion
+
+Fin del algoritmo

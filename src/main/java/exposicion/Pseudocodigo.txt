@@ -1,0 +1,158 @@
+============ ALGORITMO TABLA HASH ============
+
+1. Meta:
+    Escribir("""
+            ================ SISTEMA HASH - PRUEBA ================
+            Programa que permite probar el ADT Tabla Hash manual,
+            para registrar personas desde teclado o archivo, buscar
+            nombres y visualizar la tabla con encadenamiento.
+            =======================================================
+            """);
+
+2. Data:
+    Escribir("Inicializando Tabla Hash vacia con 11 cubetas...\n");
+    Escribir("--- Estructura en memoria lista ---");
+
+2.1 capturarNombre: String :
+    Recibir atributo 'prompt'
+    terminar mientras (verdadero) empezar
+        Escribir(prompt);
+        aux = llamar a sc.nextLine();
+        si (!llamar a aux.trim().isEmpty()) entonces
+            retornar llamar a aux.trim();
+        sino entonces
+            Escribir("Error: El nombre no puede estar vacio.");
+        terminar si
+    terminar mientras
+
+2.2 registrarManual:
+    nuevaPersona = new Persona();
+    valido = falso;
+
+    terminar mientras (!valido) empezar
+        Escribir("Ingrese el nombre de la persona: ");
+        nombre = llamar a sc.nextLine();
+        
+        si (llamar a nuevaPersona.setNombre(nombre)) entonces
+            valido = verdadero;
+        sino entonces
+            Escribir("Error: Nombre invalido.");
+        terminar si
+    terminar mientras
+
+    llamar a tabla.insertar(nuevaPersona);
+    Escribir("Registro insertado correctamente.");
+
+2.3 registrarDesdeArchivo:
+    selector = new JFileChooser();
+    contadorExito = 0;
+    contadorFallos = 0;
+    Escribir("\nAbriendo selector de archivos...");
+    
+    si (selector.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) entonces
+        archivo = llamar a selector.getSelectedFile();
+        intentar
+            lector = new FileReader(archivo);
+            buffer = new BufferedReader(lector);
+            linea = llamar a buffer.readLine();
+            
+            terminar mientras (linea != null) empezar
+                si (!llamar a linea.trim().isEmpty()) entonces
+                    nuevaPersona = new Persona();
+                    si (llamar a nuevaPersona.setNombre(linea)) entonces
+                        llamar a tabla.insertar(nuevaPersona);
+                        contadorExito = contadorExito + 1;
+                    sino entonces
+                       letrero = "Fallo de validacion: "
+                        letrero += "Se omitio el registro invalido: ";
+                        Escribir(letrero + llamar a linea.trim() + ".");
+                        contadorFallos = contadorFallos + 1;
+                    terminar si
+                terminar si
+                linea = llamar a buffer.readLine();
+            terminar mientras
+            
+            llamar a buffer.close();
+            Escribir("Proceso finalizado. Se cargaron " + contadorExito 
+               + " registros correctamente (" + contadorFallos + " omitidos).");
+        capturar excepcion e empezar
+            Escribir("Error al leer archivo: " + llamar a e.getMessage());
+        terminar intentar
+    sino entonces
+        Escribir("No se selecciono ningun archivo.");
+    terminar si
+
+3. Proceso:
+    Recibir atributo 'option'
+    segun (option) hacer
+        caso 1: registrarManual(); romper;
+        caso 2: registrarDesdeArchivo(); romper;
+        caso 3: buscarPersona(); romper;
+        caso 4: resultados(); romper;
+        caso 5: vaciarTabla(); 
+    terminar segun 
+
+3.1 buscarPersona:
+    nombreBuscado = llamar a capturarNombre("\nIngrese el nombre a buscar: ");
+    llamar a tabla.buscar(nombreBuscado);
+
+3.2 vaciarTabla:
+    Escribir("\n===============================================");
+    Escribir("¡ADVERTENCIA! Se eliminaran todos los registros.");
+    Escribir("=================================================");
+    Escribir("¿Esta totalmente seguro de vaciar la tabla? (S/N): ");
+    confirmacion = llamar a sc.nextLine().trim().toUpperCase();
+
+    si (llamar a confirmacion.equals("S")) entonces
+        tabla = new TablaHash(11);
+        Escribir("\nExito: La Tabla Hash ha sido vaciada por completo.");
+    sino entonces
+        Escribir("\nOperacion cancelada. Los registros siguen a salvo.");
+    terminar si
+
+4. Resultados: 
+    Escribir("\nMostrando Estado de la Tabla:");
+    llamar a tabla.mostrarTabla();
+
+
+5. Navegabilidad:
+    llamar a meta();
+    llamar a data();
+    opcion = 0;
+    
+    terminar mientras (opcion != 6) empezar
+        opcion = llamar a menuPrincipal();
+        si (opcion != 6) entonces
+            llamar a proceso(opcion);
+        terminar si
+    terminar mientras
+    llamar a resultados();
+    llamar a sc.close();
+
+5.1 menuPrincipal: int :
+    opcion = 0;
+    valido = falso;
+
+    terminar mientras (!valido) empezar
+        Escribir("""
+            \nOPCIONES DE TABLA HASH:
+            1) Registrar persona (Teclado)
+            2) Registrar personas (Archivo TXT)
+            3) Buscar persona por nombre
+            4) Mostrar estado de la Tabla Hash
+            5) Vaciar todos los registros
+            6) Salir
+            Su eleccion >>> """);
+        aux = llamar a sc.nextLine();
+        intentar
+            opcion = llamar a Integer.parseInt(aux);
+            si (opcion >= 1 y opcion <= 6) entonces 
+                valido = verdadero;
+            sino entonces
+                Escribir("Error: Ingrese un numero (1 al 6).");
+            terminar si
+        capturar excepcion e empezar
+            Escribir("Error: Ingrese unicamente un valor numerico.");
+        terminar intentar
+    terminar mientras
+    retornar opcion;

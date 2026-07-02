@@ -1,0 +1,114 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #37
+Fecha: 6 de junio de 2026
+
+===== ALGORITMO CURVA DE HILBERT RECURSIVA =====
+
+1. inicio() // Meta
+    Escribir("GRAFICADOR RECURSIVO DE LA CURVA DE HILBERT (FRACTAL)")
+
+2. data()
+    Booleano: isValid = falso
+    mientras (no isValid) empezar
+        orden = llamar capInt("Ingrese el nivel de orden de la curva (Sugerido 1 - 6):")
+        si (orden < 1) entonces empezar
+            Escribir("El orden del fractal debe ser mayor o igual a 1.")
+        terminar
+        sino si (orden > 7) entonces empezar
+            Escribir("Un orden muy alto puede saturar la pila de llamadas. Ingrese un valor <= 7.")
+        terminar
+        sino empezar
+            isValid = verdadero
+        terminar
+    terminar mientras
+
+2.1. capInt(prompt)
+    mientras (verdadero) empezar
+        Escribir(prompt)
+        entrada = leer línea de la terminal
+        intentar empezar
+            retornar convertir entrada a entero
+        terminar
+        capturar error empezar
+            Escribir("Error: Ingrese unicamente un numero entero valido.")
+        terminar capturar
+    terminar mientras
+
+2.2. capOpcion(prompt)
+    mientras (verdadero) empezar
+        Escribir(prompt)
+        entrada = leer de la terminal sin espacios y en mayúsculas
+        si (entrada es igual a "S" o entrada es igual a "N") entonces empezar
+            retornar entrada
+        terminar
+        de lo contrario empezar
+            Escribir("Error: Opcion no valida. Ingrese estrictamente 'S' o 'N'.")
+        terminar
+    terminar mientras
+
+3.1. hilbert(nivel, direccion, rotacion, dist)
+    // Regla de paro o caso base
+    si (nivel es igual a 0) entonces empezar
+        retornar
+    terminar
+
+    direccion = direccion + rotacion
+    llamar hilbert(nivel - 1, direccion, -rotacion, dist)
+    llamar mover(direccion MODULO 4, dist)
+
+    direccion = direccion - rotacion
+    llamar hilbert(nivel - 1, direccion, rotacion, dist)
+    llamar mover(direccion MODULO 4, dist)
+
+    llamar hilbert(nivel - 1, direccion, rotacion, dist)
+    direccion = direccion - rotacion
+    llamar mover(direccion MODULO 4, dist)
+
+    llamar hilbert(nivel - 1, direccion, -rotacion, dist)
+
+3.2. mover(dir, dist)
+    Entero: oldX = x
+    Entero: oldY = y
+    
+    si (dir < 0) entonces dir = dir + 4
+
+    seleccionar (dir) empezar
+        caso 0: y = y - dist     // Arriba
+        caso 1: x = x + dist     // Derecha
+        caso 2: y = y + dist     // Abajo
+        caso 3: x = x - dist     // Izquierda
+    terminar seleccionar
+    
+    TrazarLíneaEnPantalla(oldX, oldY, x, y)
+
+4. paintComponent()
+    n = 2 ^ orden
+    padding = 40
+    ladoSoportado = MínimoValor(LargoLienzo, AltoLienzo) - (padding * 2)
+    dist = ladoSoportado / (n - 1)
+    
+    si (dist < 1) entonces dist = 1
+    
+    Entero: anchoTotal = dist * (n - 1)
+    x = padding + (LargoLienzo - (padding * 2) - anchoTotal) / 2
+    y = padding + (AltoLienzo - (padding * 2) - anchoTotal) / 2 + anchoTotal
+    
+    llamar hilbert(orden, 0, 1, dist)
+
+5. Principal / Método main(args)
+    Cadena: resp = "S"
+    mientras (resp es igual a "S") empezar
+        Instanciar objeto ch de la Clase CurvaHilbert
+        llamar ch.inicio()
+        llamar ch.data()
+        llamar ch.paintComponent() // El sistema renderiza la interfaz gráfica Swing de forma asíncrona
+        resp = llamar ch.capOpcion("¿Desea dibujar otra curva de Hilbert? s/n:")
+    terminar mientras
+    Escribir("Ejecución finalizada. ¡Buen día!")

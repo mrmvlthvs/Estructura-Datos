@@ -1,0 +1,100 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #34
+Fecha: 6 de mayo de 2026
+
+===== ALGORITMO FACTORIAL =====
+
+1. meta()
+    Escribir("============ CALCULA TABLA DE FACTORIALES ============")
+    Escribir("| Programa que permite calcular el factorial de un   |")
+    Escribir("| numero o varios numeros.                           |")
+    Escribir("======================================================")
+
+2. data()
+    isNum = falso
+    
+    hacer empezar
+        Escribir("Ingrese el tamano de la tabla >>>")
+        aux = leer línea de texto de la terminal
+        
+        intentar empezar
+            num = convertir aux a entero
+            si (num < 0) entonces empezar
+                Escribir("NO es valido un numero negativo")
+                isNum = falso
+            terminar
+            sino empezar
+                isNum = verdadero
+            terminar
+        terminar
+        capturar error de conversión empezar
+            Escribir("ERROR: Asegurese de ingresar solo numeros enteros NO negativos")
+            isNum = falso
+        terminar capturar
+    terminar mientras (no isNum)
+
+3. proceso()
+    result = 1  // Inicialización elemental equivalent a BigInteger.ONE
+    
+    desde i = 2; mientras i <= num; incrementar i para empezar
+        result = result * i  // Multiplicación de alta precisión asimilada
+    terminar
+
+4. resultados()
+    Escribir("================ RESULTADO FACTORIAL =================")
+    Escribir("Factorial de " + num + "!")
+    Escribir("    R= " + result)
+
+5. navegabilidad()
+    Booleano: isValid = falso
+    Booleano: ret = falso
+    Cadena: op
+    Cadena: mess = "¿Desea probar con otro numero? S/n >>> "
+    
+    mientras (no isValid) empezar
+        Escribir(mess)
+        op = leer línea de texto de la terminal (quitar espacios en blanco)
+        
+        si (op es igual a "s" ignorando mayúsculas/minúsculas O op está vacía) entonces empezar
+            isValid = verdadero
+            ret = verdadero
+            llamar lineBR()
+            retornar verdadero
+        terminar
+        sino si (op es igual a "n" ignorando mayúsculas/minúsculas) entonces empezar
+            isValid = verdadero
+            ret = falso
+            retornar falso
+        terminar
+        sino empezar
+            Escribir("Opcion Invalida. Solo ingrese 'S' o 'N'")
+        terminar
+    terminar mientras
+    retornar ret
+
+5.1. Principal / Método main(args)
+    Instanciar objeto fct de la Clase Factorial
+    run = verdadero
+
+    llamar fct.meta()
+    
+    mientras (run) empezar
+        llamar fct.data()
+        llamar fct.lineBR()
+        llamar fct.proceso()
+        llamar fct.lineBR()
+        llamar fct.resultados()
+        llamar fct.lineBR()
+        run = llamar fct.navegabilidad()
+    terminar mientras
+    
+    llamar fct.lineBR()
+    Escribir("        FIN DEL PROGRAMA")
+    llamar fct.lineBR()

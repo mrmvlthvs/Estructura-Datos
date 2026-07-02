@@ -1,0 +1,81 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicios #23
+Fecha: 20 de abril de 2026
+
+===== ALGORITMO SHELL =====
+
+1. Meta:
+   Mostrar mensaje de bienvenida y propósito del programa.
+
+2. Data:
+   2.1 Mostrar menú de origen (Teclado / Archivo)
+   2.2 Si es Teclado:
+       Inicializar lista vacía.
+       Repetir:
+           Solicitar una cadena al usuario.
+           Si cadena es "parar" (ignorando mayúsculas):
+               Romper repetición.
+           Sino:
+               Intentar convertir cadena a entero.
+               Si éxito: agregar entero a lista.
+               Sino: mostrar error.
+       Fin repetir.
+       Convertir lista a arreglo 'datos'.
+   2.3 Si es Archivo:
+       Abrir selector de archivos.
+       Leer cada línea, dividir por espacios.
+       Por cada token:
+           Intentar convertir a entero.
+           Si éxito: agregar a lista.
+           Sino: mostrar advertencia.
+       Cerrar archivo.
+       Convertir lista a arreglo 'datos'.
+
+3. Proceso:
+   Si datos está vacío:
+       Mostrar advertencia y retornar.
+   Inicializar comparaciones = 0, intercambios = 0.
+   n = longitud(datos)
+   salto = n
+   Mientras salto > 1:
+       salto = salto / 2
+       ordenado = falso
+       Repetir:
+           ordenado = verdadero
+           Para j = 0 hasta n-1-salto:
+               k = j + salto
+               comparaciones++
+               Si datos[j] > datos[k]:
+                   intercambiar datos[j] y datos[k]
+                   intercambios++
+                   ordenado = falso
+           Fin para
+       Hasta que ordenado sea verdadero
+   Fin mientras
+   Almacenar estadísticas en variable 'salida'.
+
+4. Resultados:
+   Si datos vacío:
+       Mostrar advertencia.
+   Sino:
+       Construir cadena con cada número en una línea.
+       Según el medio (terminal / archivo):
+           Terminal: imprimir encabezado, estadísticas y los números.
+           Archivo: abrir selector para guardar, escribir los números.
+   Fin si
+
+5. Navegabilidad:
+   Repetir:
+       Mostrar menú principal (Capturar / Imprimir / Salir).
+       Según opción:
+           Capturar: llamar Data, luego Proceso.
+           Imprimir: si hay datos, preguntar medio y llamar Resultados.
+           Salir: terminar bucle.
+   Hasta salir.

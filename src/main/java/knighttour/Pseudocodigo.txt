@@ -1,0 +1,99 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #39
+Fecha: 25 de mayo de 2026
+
+===== ALGORITMO RECORRIDO DEL CABALLO  =====
+
+Variables GLOBALES
+    Entero: N = 8
+    Matriz de Enteros: sol[N][N]
+    Arreglo de Enteros: xMove = {2, 1, -1, -2, -2, -1, 1, 2}
+    Arreglo de Enteros: yMove = {1, 2, 2, 1, -1, -2, -2, -1}
+    Booleano: exito
+
+1. meta()
+    Escribir("===========================================================")
+    Escribir("                PROBLEMA DEL RECORRIDO DEL CABALLO ")
+    Escribir("===========================================================")
+    Escribir("Este programa resuelve el dilema del recorrido del caballo ")
+    Escribir("en un tablero de ajedrez de 8x8 empleando la tecnica de ")
+    Escribir("Vuelta Atras. El algoritmo busca una secuencia donde la ")
+    Escribir("pieza visite cada casilla exactamente una sola vez. Si no ")
+    Escribir("se halla un camino completo válido, notificara la ")
+    Escribir("inexistencia de solucion.")
+    Escribir("===========================================================")
+
+2. data()
+    No hay
+
+3. proceso()
+    desde x = 0; mientras x < N; incrementar x para empezar
+        desde y = 0; mientras y < N; incrementar y para empezar
+            sol[x][y] = -1
+        terminar
+    terminar
+    
+    sol[0][0] = 0   // Posición inicial del caballo
+    exito = llamar solveKTUtil(0, 0, 1)
+
+4. resultados()
+    si (no exito) entonces empezar
+        Escribir("La solucion no existe para las dimensiones o la raiz especificada.")
+    terminar
+    sino empezar
+        Escribir("RECORRIDO ENCONTRADO CON ÉXITO:")
+        Escribir("")
+        llamar printSolution()
+    terminar
+
+3.1. isSafe(x, y)
+    retornar (x >= 0 Y x < N Y y >= 0 Y y < N Y sol[x][y] es igual a -1)
+
+3.2. solveKTUtil(x, y, movei)
+    Entero: k, next_x, next_y
+
+    // Caso base: Si todos los movimientos han sido completados
+    si (movei es igual a N * N) entonces empezar
+        retornar verdadero
+    terminar
+    
+    // Evaluar los 8 movimientos posibles del caballo
+    desde k = 0; mientras k < N; incrementar k para empezar
+        next_x = x + xMove[k]
+        next_y = y + yMove[k]
+        
+        si (llamar isSafe(next_x, next_y)) entonces empezar
+            sol[next_x][next_y] = movei
+            
+            si (llamar solveKTUtil(next_x, next_y, movei + 1)) entonces empezar
+                retornar verdadero
+            terminar
+            sino empezar
+                sol[next_x][next_y] = -1 // Vuelta Atrás (Backtracking)
+            terminar
+        terminar
+    terminar
+    
+    retornar falso
+
+4.1. printSolution()
+    desde x = 0; mientras x < N; incrementar x para empezar
+        desde y = 0; mientras y < N; incrementar y para empezar
+            EscribirSinSaltar(sol[x][y] + "    ") // Representación con tabulado/espacio uniforme
+        terminar
+        Escribir("") // Salto de línea por cada fila del tablero
+    terminar
+
+5. Principal / Método main(args)
+    Instanciar objeto kt de la Clase KnightTour
+    
+    llamar kt.meta()
+    llamar kt.proceso()
+    llamar kt.resultados()

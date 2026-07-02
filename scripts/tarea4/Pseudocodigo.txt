@@ -1,0 +1,177 @@
+1. Meta:
+    Escribir("""
+            ================ FRACTAL: DRAGON POR SISTEMA-L ================
+            Programa que genera la Curva del Dragón mediante la evolución
+            de cadenas (Gramática L-System) e interpretación gráfica.
+            ===============================================================
+            """);
+
+2. Data:
+    Escribir("\n--- Captura de Parámetros Base ---");
+    orden = llamar a capturarEntero("Ingrese el número de orden (0-11): ");
+    
+    si (orden <= 7) entonces
+        longi = 15.0;
+    sino entonces
+        longi = llamar a Math.max(2.0, 300/llamar a Math.pow(1.4142, orden));
+    terminar si
+    
+    Escribir("-> Asignando automáticamente longitud de paso óptima: " + longi + " píxeles.");
+    
+    intentar
+        si (t == null) entonces
+            llamar a turtle.setup(900, 700);
+            t = new Turtle();
+            llamar a turtle.delay(0);
+        sino entonces
+            llamar a t.hideturtle();
+        terminar si
+    capturar excepcion e empezar
+        llamar a turtle.clearscreen();
+        llamar a turtle.setup(900, 700);
+        t = new Turtle();
+        llamar a turtle.delay(0);
+    terminar intentar
+    
+    llamar a t.speed(0);
+    llamar a t.hideturtle();
+    Escribir("Componentes graficos listos.");
+
+2.1 capturarEntero:int :
+    Recibir atributo 'prompt'
+    terminar mientras (verdadero) empezar
+        Escribir(prompt);
+        aux = ?
+        intentar
+            valor = llamar a Integer.parseInt(aux);
+            si (valor >= 0 y valor <= 11) entonces
+                retornar valor;
+            sino entonces
+                Escribir("Error: Rango permitido entre 0 y 11.");
+            terminar si
+        capturar excepcion e empezar
+            Escribir("Error: Ingrese un número entero valido.");
+        terminar intentar
+    terminar mientras
+
+3. Proceso:
+    Escribir("\n--- Procesando Gramática L-System ---");
+    c_acumulada = "FX";
+    
+    i = 0;
+    terminar mientras (i < orden) empezar
+        c_acumulada = llamar a dragonEvolution(c_acumulada);
+        i = i + 1;
+    terminar mientras
+    
+    Escribir("Evolución completada. Tamaño: " + llamar a c_acumulada.length() + " caracteres.");
+    Escribir("Trazando en ventana gráfica...");
+    
+    fr_d = longitud * llamar a Math.pow(1.4142, orden);
+    origen_x = - (fr_d / 3.5);
+    
+    si ((orden % 2) == 0) entonces
+        origen_y = (fr_d / 4.0);
+    sino entonces
+        origen_y = -(fr_d / 12.0);
+    terminar si
+    
+    si (orden < 6) entonces
+        origen_x = -50;
+        origen_y = 0;
+    terminar si
+    
+    llamar a t.penup();
+    llamar a t.goto(origen_x, origen_y);
+    llamar a t.pendown();
+    
+    llamar a interpretDragon(c_acumulada);
+
+3.1 dragonEvolution:String :
+    Recibir atributo 'cadena_actual'
+    resultado = "";
+    i = 0;
+    terminar mientras (i < llamar a cadena_actual.length()) empezar
+        caracter = llamar a cadena_actual.charAt(i);
+        segun (caracter) hacer
+            caso 'X':
+                resultado = resultado + "X+YF+";
+                romper;
+            caso 'Y':
+                resultado = resultado + "-FX-Y";
+                romper;
+            por defecto:
+                resultado = resultado + caracter;
+                romper;
+        terminar segun
+        i = i + 1;
+    terminar mientras
+    retornar resultado;
+
+3.2 interpretDragon:
+    Recibir atributo 'cadena_final'
+    colores = ["blue", "red", "green", "black", "yellow", "magenta"];
+    dr = 0;
+    i = 0;
+    
+    terminar mientras (i < llamar a cadena_final.length()) empezar
+        caracter = llamar a cadena_final.charAt(i);
+        segun (caracter) hacer
+            caso '+':
+                llamar a t.left(90);
+                romper;
+            caso '-':
+                llamar a t.right(90);
+                romper;
+            caso 'F':
+                llamar a t.pencolor(colores[dr]);
+                llamar a t.forward(longitud);
+                dr = (dr + 1) % 6;
+                romper;
+        terminar segun
+        i = i + 1;
+    terminar mientras
+
+4. Resultados:
+    Escribir("\nFractal generado de manera exitosa.");
+    Escribir("Puede visualizar el patron de colores en la ventana.");
+
+5. Navegabilidad:
+    llamar a meta();
+    bandera_cierre = falso;
+    
+    terminar mientras (!bandera_cierre) empezar
+        llamar a data();
+        llamar a proceso();
+        llamar a resultados();
+        
+        valido = falso;
+        terminar mientras (!valido) empezar
+            Escribir("\n¿Desea generar otra evolucion del fractal? (S/N): ");
+            aux = ?
+            respuesta = llamar a aux.trim().toUpperCase();
+            
+            si (respuesta == "S") entonces
+                valido = verdadero;
+                intentar
+                    llamar a t.reset();
+                    llamar a t.hideturtle();
+                capturar excepcion e empezar
+                    // Omitir si la ventana grafica se cerro
+                terminar intentar
+            sino entonces
+                si (respuesta == "N") entonces
+                    valido = verdadero;
+                    bandera_cierre = verdadero;
+                sino entonces
+                    Escribir("Error: Ingrese 'S' o 'N'.");
+                terminar si
+            terminar si
+        terminar mientras
+    terminar mientras
+    
+    Escribir("\nCerrando módulo de fractales...");
+    intentar
+        llamar a turtle.done();
+    capturar excepcion e empezar
+    terminar intentar

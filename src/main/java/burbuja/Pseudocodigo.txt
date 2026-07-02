@@ -1,0 +1,213 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #21
+Fecha: 25 de marzo de 2026
+
+----- ALGORITMO: BURBUJA -----
+
+1. meta()
+    Escribir("Programa de ordenamiento de datos ingresados mediante teclado 
+            y/o por archivo de texto.");
+
+2. data()
+    Escribir("Ingrese el medio de captura:\n0. Teclado\n1. Archivo");
+    opcionCaptura = leer opcion;
+    
+    segun opcionCaptura empezar
+        caso 0: 
+            llamar teclado(); 
+            romper;
+        caso 1: 
+            llamar archivo(); 
+            romper;
+    terminar segun
+
+2.1. teclado()
+    titulo = "Datos por Teclado";
+    mensaje = "Ingrese el dato entero o escriba 'parar' para detener.";
+    inicializar listaDinamica vacía;
+    
+    mientras (verdadero) empezar
+        datoObtenido = llamar isNum(titulo, mensaje);
+        
+        si (datoObtenido es nulo) empezar
+            romper mientras; // Se detectó el centinela de parada
+        terminar si
+        
+        agregar datoObtenido a listaDinamica;
+    terminar mientras
+    
+    datos = nuevo arreglo de enteros con tamaño de listaDinamica;
+    para i desde 0 hasta longitud(datos) - 1 empezar
+        datos[i] = obtener elemento i de listaDinamica;
+    terminar para
+    
+    Escribir("Se ingresaron " + longitud(datos) + " datos.");
+
+2.a. isNum(titulo, mensaje)
+    valido = falso;
+    numero = nulo;
+    
+    mientras (no valido) empezar
+        aux = leer cadena del usuario(titulo, mensaje);
+        
+        si (aux es nulo) empezar
+            aux = "";
+        terminar si
+        
+        si (aux.trim() es igual a "parar" sin importar mayúsculas) empezar
+            retornar nulo; 
+        terminar si
+        
+        intentar empezar
+            numero = convertir aux.trim() a entero;
+            valido = verdadero;
+        capturar error empezar
+            Escribir("No es un número entero válido ni la palabra de parada. Intente de nuevo.");
+        terminar intentar
+    terminar mientras
+    retornar numero;
+
+2.2. archivo()
+    Abrir archivo con selector de archivos (.txt)
+    si (se seleccionó un archivo válido) empezar
+        archivo = archivo seleccionado;
+        inicializar listaDinamica vacía;
+        
+        intentar empezar
+            Abrir canal de lectura para el archivo
+            mientras (haya líneas por leer en el archivo) empezar
+                linea = leer siguiente línea del archivo;
+                linea = linea.trim();
+                
+                si (linea no está vacía) empezar
+                    intentar empezar
+                        dato = convertir linea a entero;
+                        agregar dato a listaDinamica;
+                    capturar error empezar
+                        Escribir("El dato '" + linea + "' no es un número entero.");
+                    terminar intentar
+                terminar si
+            terminar mientras
+            
+            datos = nuevo arreglo de enteros con tamaño de listaDinamica;
+            para i desde 0 hasta longitud(datos) - 1 empezar
+                datos[i] = obtener elemento i de listaDinamica;
+            terminar para
+            
+            Escribir("Se han registrado " + longitud(datos) + " datos.");
+        capturar error empezar
+            Escribir("Error al leer el archivo.");
+        terminar intentar
+    de otro modo empezar
+        Escribir("No se seleccionó ningún archivo.");
+    terminar si
+
+3. proceso(opcion)
+    segun opcion empezar
+        caso 0:
+            llamar data();
+            si (datos no es nulo y longitud(datos) > 0) empezar
+                llamar ordenar();
+            terminar si
+            romper;
+        caso 1:
+            si (datos es nulo o longitud(datos) == 0) empezar
+                Escribir("Capture los datos antes de imprimir.");
+            de otro modo empezar
+                Escribir("Elija medio: 0. Terminal, 1. Archivo");
+                medio = leer medio;
+                si (medio != -1) empezar
+                    llamar imprimir(medio);
+                terminar si
+            terminar si
+            romper;
+    terminar segun
+
+3.1. ordenar()
+    nd = longitud(datos);
+    comparacion = 0;
+    intercambio = 0;
+    
+    para i desde 0 hasta nd - 2 empezar
+        para j desde 0 hasta nd - i - 2 empezar
+            comparacion += 1;
+            
+            si (datos[j] > datos[j + 1]) empezar
+                temp = datos[j];
+                datos[j] = datos[j + 1];
+                datos[j + 1] = temp;
+                intercambio += 1;
+            terminar si
+        terminar para
+    terminar para
+    
+    salida = "Número de comparaciones: " + comparacion + "\nNúmero de intercambios: " + intercambio;
+    Escribir(salida);
+
+4. imprimir(medio)
+    resultado = "";
+
+    para i desde 0 hasta longitud(datos) - 1 empezar
+        resultado = resultado + datos[i] + "\n";
+    terminar para
+    segun medio empezar
+        caso 0:
+            Escribir("===== DATOS INGRESADOS Y ORDENADOS =====");
+            Escribir(salida);
+            Escribir(resultado);
+            romper;
+        caso 1:
+            llamar crearArchivo(resultado);
+            romper;
+    terminar segun
+
+4.1. crearArchivo(resultado)
+    Seleccionar ruta de guardado con selector de archivos
+    si (se confirmó la ruta de guardado) empezar
+        archivo = archivo seleccionado;
+        
+        si (archivo no termina en ".txt") empezar
+            archivo = archivo + ".txt";
+        terminar si
+        
+        intentar empezar
+            Abrir canal de escritura para el archivo
+            si (longitud(resultado) > 0) empezar
+                escribir en archivo (salida + "\n" + resultado);
+            terminar si
+            
+            Escribir("Archivo guardado correctamente.");
+        capturar error empezar
+            Escribir("Ocurrió un error al crear el archivo.");
+        terminar intentar
+    de otro modo empezar
+        Escribir("Guardado cancelado por el usuario.");
+    terminar si
+
+4.2. resultados()
+    Escribir("Ejecución finalizada de manera ordenada. ¡Buen día!");
+
+5. navegabilidad()
+    llamar meta();
+    opcion = 0;
+    
+    mientras (opcion != 2 y opcion != -1) empezar
+        Escribir("MENU:
+                0. Capturar datos
+                1. Imprimir resultados
+                2. Salir");
+        opcion = leer opcion del usuario;
+        
+        si (opcion != 2 y opcion != -1) empezar
+            llamar proceso(opcion);
+        terminar si
+    terminar mientras
+    
+    llamar resultados();

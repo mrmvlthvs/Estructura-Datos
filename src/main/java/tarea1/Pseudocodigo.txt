@@ -1,0 +1,84 @@
+----- ALGORITMO PruebaCharacter -----
+1. meta(): 
+    Escribir("  Solicitar al usuario ingresar el carácter 
+                de su elección y posteriormente analizar, 
+                mediante la clase PruebaCharacter, qué 
+                tipo de carácter ingreso el usuario y 
+                finalmente imprimir la información 
+                correspondiente en pantalla para mostrarse 
+                al usuario.");
+
+2. data(): String
+    entrada = ""
+    
+    terminar mientras (entrada es vacia) empezar
+        Escribir("Ingrese el caracter de su eleccion");
+        entrada = ?;
+        
+        si (entrada es vacia) empezar
+            Escribir("Entrada vacia. Ingrese al menos un caracter.");
+        terminar si
+    terminar mientras
+    
+    caracter = primerCaracter(entrada)
+    
+    regresar caracter como String
+
+3. proceso()
+    mensaje = ""
+    ch = llamar a data()
+    
+    si (esLetra(caracter)) empezar
+        mensaje = "Usted ingreso " + ch + " y es una letra"
+        
+        si (esMayuscula(caracter)) empezar
+            mensaje = mensaje + " mayuscula."
+        de otro modo si (esMinuscula(caracter)) empezar
+            mensaje = mensaje + " minuscula."
+        terminar si
+    terminar si
+    
+    de otro modo si (esDigito(caracter)) empezar
+        mensaje = "Usted ingreso " + ch + " y es un digito."
+    terminar si
+    
+    de otro modo empezar
+        mensaje = "Usted ingreso " + ch + " y no es ni letra ni digito."
+    terminar si
+    
+    si (longitud(entrada) > 1) empezar
+        mensaje = mensaje + "\nNOTA: Solo se toma el primer caracter."
+        mensaje = mensaje + "\nEntrada original: " + entrada
+    terminar si
+    
+    llamar a resultado(mensaje)
+
+4. resultado(): 
+    Si (esLetra) empezar
+        Escribir (“Usted ingresó “ + caracter + “ y es una letra.”);
+    Si (esDigito) empezar
+        Escribir (“Usted ingresó “ + caracter + “ y es un dígito.”);
+    Si (esMayuscula) empezar
+        Escribir (“Usted ingresó una letra mayúscula.”);
+    Si (esMinuscula) empezar
+        Escribir (“Usted ingresó una letra minúscula.”);
+    terminar si
+    Escribir (“FIN DEL PROGRAMA”);
+
+5. navegabilidad()
+    llamar a meta()
+    
+    opcion = 0
+    
+    terminar mientras (opcion == 0) empezar
+        llamar a proceso()
+        
+        Escribir("¿Quiere volver a intentarlo?")
+        Escribir("0 = Si, 1 = No")
+        opcion = ?;
+    terminar mientras
+    
+    llamar a salida()
+
+5.1 salida()
+    Escribir("FIN DEL PROGRAMA")

@@ -1,0 +1,129 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio: #10
+Fecha: 02/03/2026
+
+----- Algoritmo MaximosMinimos -----
+
+1. META: Este programa imprime los valores máximos y mínimos, y más detalles de las variables primitivas en Java.
+
+2.1. byteData: 
+resultado = “BYTE INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Byte.SIZE
+            + "\nTamano en bytes: " + Byte.BYTES
+            + "\nValor minimo: " + Byte.MIN_VALUE
+            + "\nValor maximo: " + Byte.MAX_VALUE;
+llamar a resultados();
+
+2.2. shortData: 
+resultado = “SHORT INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Short.SIZE
+            + "\nTamano en bytes: " + Short.BYTES
+            + "\nValor minimo: " + Short.MIN_VALUE
+            + "\nValor maximo: " + Short.MAX_VALUE;
+llamar a resultados();
+
+2.3. intData: 
+resultado = “INTEGER INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Integer.SIZE
+            + "\nTamano en bytes: " + Integer.BYTES
+            + "\nValor minimo: " + Integer.MIN_VALUE
+            + "\nValor maximo: " + Integer.MAX_VALUE;
+llamar a resultados();
+
+2.4. longData: 
+resultado = “LONG INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Long.SIZE
+            + "\nTamano en bytes: " + Long.BYTES
+            + "\nValor minimo: " + Long.MIN_VALUE
+            + "\nValor maximo: " + Long.MAX_VALUE;
+llamar a resultados();
+
+2.5. floatData: 
+resultado = “FLOAT INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Float.SIZE
+            + "\nTamano en bytes: " + Float.BYTES
+            + "\nValor minimo: " + Float.MIN_VALUE
+            + "\nValor maximo: " + Float.MAX_VALUE;
+llamar a resultados();
+
+2.6. doubleData: 
+resultado = “DOUBLE INFORMACION”
+		+ "\nTipo de dato: NUMERICO"
+            + "\nEspacio en bits: " + Double.SIZE
+            + "\nTamano en bytes: " + Double.BYTES
+            + "\nValor minimo: " + Double.MIN_VALUE
+            + "\nValor maximo: " + Double.MAX_VALUE;
+llamar a resultados();
+
+2.7. charData: 
+resultado = “CHARACTER INFORMACION”
+		+ "\nTipo de dato: CARACTER"
+            + "\nEspacio en bits: " + Character.SIZE
+            + "\nTamano en bytes: " + Character.BYTES
+            + "\nValor minimo: " + (entero)Character.MIN_VALUE
+            + "\nValor maximo: " + (entero)Character.MAX_VALUE;
+llamar a resultados();
+
+2.8. booleanData: 
+resultado = “BOOLEAN INFORMACION”
+		+ "\nTipo de dato: LOGICO"
+            + "\nValor minimo: " + Boolean.FALSE
+            + "\nValor maximo: " + Boolean.TRUE;
+llamar a resultados();
+
+3. PROCESO: 
+segun opcion hacer
+	caso 1 -> llamar a byteData();
+	case 2 -> llamar a shortData();
+      case 3 -> llamar a intData();
+      case 4 -> llamar a longData();
+      case 5 -> llamar a floatData();
+      case 6 -> llamar a doubleData();
+      case 7 -> llamar a charData();
+case 7 -> llamar a booleanData();
+terminar segun 
+
+3.1. opciones:
+Escribir(“Seleccione el dato que desee revisar sus propiedades: 
+		1. Byte
+		2. Short
+		3. Integer
+		4. Long
+		5. Float
+		6. Double
+		7. Character
+		8. Boolean
+		Su eleccion >>>”);
+opcion = ?;
+llamar a proceso(opcion);
+
+4. RESULTADOS: 
+Escribir(resultado);
+
+5.1.  MENU: 
+Escribir(“¿Desea continuar desplegando más tipos de datos?”
+		+ “Si/No Su elección >>> );
+respuesta = ?;
+retornar respuesta;
+
+5. NAVEGABILIDAD:  El método void main().
+option = 0;
+llamar a meta();
+
+terminar mientras option sea igual a 0 empezar
+	llamar a data();
+	option = llamar a menu();
+terminar mientras
+FIN DE ALGORITMO

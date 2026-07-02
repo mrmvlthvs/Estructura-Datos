@@ -1,0 +1,150 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #27
+Fecha: 20 de abril de 2026
+
+----- ALGORITMO MERGE SORT LISTA -----
+
+1. meta().
+    Escribir("Intercalar datos de dos archivos (merge)
+              cuando tanto f1 como f2 ya están ordenados.")
+
+2. data().
+    Definir f1, f2, f3 como archivos
+    run ← verdadero
+
+    mientras (run) empezar
+        Escribir("Abra los archivos uno por uno")
+
+        run1 ← abrirArchivo(1)
+        run2 ← abrirArchivo(2)
+
+        run ← NO (run1 Y run2)
+    fin mientras
+
+    llamar a crearArchivo()
+    llamar a procesoMerge(f1, f2, f3)
+
+2.1 abrirArchivo(id).
+    Definir archivo como File
+
+    Mostrar ventana para seleccionar archivo
+
+    si (usuario selecciona archivo) empezar
+        archivo ← archivo seleccionado
+
+        si (id == 1) entonces
+            f1 ← archivo
+        si_no si (id == 2) entonces
+            f2 ← archivo
+        fin si
+
+        Escribir("Archivo abierto correctamente")
+        regresar verdadero
+    si_no empezar
+        Escribir("Error al abrir archivo")
+        regresar falso
+    fin si
+
+2.2 crearArchivo().
+    Mostrar ventana para guardar archivo
+
+    si (usuario selecciona ruta) empezar
+        f3 ← archivo seleccionado
+
+        si (f3 no termina en .txt) entonces
+            agregar ".txt" al nombre
+        fin si
+
+        Escribir("Archivo creado correctamente")
+    si_no empezar
+        Escribir("No se creó el archivo")
+    fin si
+
+3. procesoMerge(f1, f2, f3).
+    Definir window1, window2, windowS como cadena
+
+    Abrir f1 en modo lectura
+    Abrir f2 en modo lectura
+    Abrir f3 en modo escritura
+
+    leer(f1, window1)
+    leer(f2, window2)
+
+    mientras (window1 ≠ nulo Y window2 ≠ nulo) empezar
+        si (window1 <= window2) empezar
+            windowS ← window1
+            escribir(f3, windowS)
+            leer(f1, window1)
+        si_no empezar
+            windowS ← window2
+            escribir(f3, windowS)
+            leer(f2, window2)
+        fin si
+    fin mientras
+
+    mientras (window1 ≠ nulo) empezar
+        windowS ← window1
+        escribir(f3, windowS)
+        leer(f1, window1)
+    fin mientras
+
+    mientras (window2 ≠ nulo) empezar
+        windowS ← window2
+        escribir(f3, windowS)
+        leer(f2, window2)
+    fin mientras
+
+    cerrar(f1, f2, f3)
+
+    Escribir("Archivos fusionados correctamente")
+
+4. resultado().
+    si (f3 es nulo) empezar
+        Escribir("No hay archivo para mostrar")
+        regresar
+    fin si
+
+    abrir f3 en modo lectura
+
+    Escribir("===== CONTENIDO ORDENADO =====")
+
+    mientras (linea ← leer(f3)) ≠ nulo empezar
+        Escribir(linea)
+    fin mientras
+
+    Escribir("===== FIN DEL ARCHIVO =====")
+
+    cerrar(f3)
+
+5. navegabilidad().
+    llamar a meta()
+
+    opcion ← menu()
+
+    mientras (opcion ≠ 2 Y opcion ≠ -1) empezar
+        segun (opcion) hacer
+            caso 0:
+                llamar a data()
+            caso 1:
+                llamar a resultado()
+        fin segun
+
+        opcion ← menu()
+    fin mientras
+
+    Escribir("Cerrando programa")
+
+5.1 menu().
+    Escribir("1. Cargar archivos")
+    Escribir("2. Imprimir lista fusionada")
+    Escribir("3. Salir")
+
+    opcion ← leer opcion
+    regresar opcion

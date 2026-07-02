@@ -1,0 +1,125 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+Lunes y miércoles de 8:45 a 10:25
+Viernes de 8:45 a 9:35
+Alumna: Marlene Inés Moreno Velázquez
+Semestre: 3er semestre 26/1
+Profesor: Cirino Silva Tovar
+Ejercicio #3
+Fecha: 25/02/2026
+
+===== MODIFICACIONES REALIZADAS =====
+
+1. Se corrigió el ciclo infinito en data()
+   Antes: El nombre solo se solicitaba una vez.
+   Ahora: El nombre se vuelve a solicitar al final del ciclo.
+
+2. Se agregó validación del tamaño del arreglo
+   Antes: No existía control del límite de 25 elementos.
+   Ahora: 
+      Se agregó:
+         mientras(nombre != "fin" y cuenta < 25)
+
+3. Se agregó mensaje de límite alcanzado
+   Antes: El usuario no sabía si el arreglo se llenaba.
+   Ahora: 
+      Se imprime:
+         "Limite del arreglo alcanzado."
+
+4. Se corrigió el acceso incorrecto en read(archi)
+   Antes: grupo[cuenta].setNombre(in.getNombre())
+   Error: "in" era el archivo, no el registro leído.
+   Ahora: grupo[cuenta].setNombre(pers.getNombre())
+
+5. Se corrigieron todos los getters incorrectos
+   Antes:
+      Se utilizaba:
+         in.getControl()
+         in.getFNac()
+         in.getPeso()
+         in.getTalla()
+   Ahora:
+      Se utiliza:
+         pers.getControl()
+         pers.getFNac()
+         pers.getPeso()
+         pers.getTalla()
+
+6. Se agregó validación de tamaño en read(archi)
+   Antes: El archivo podía desbordar el arreglo.
+   Ahora: mientras(!eof(in) y cuenta < 25)
+
+7. Se agregó cierre de archivo
+   Antes: El archivo nunca se cerraba.
+   Ahora: cerrar(in)
+
+8. Se corrigió el límite del ciclo en search()
+   Antes: desde indice = 0 hasta indice = cuenta
+   Error: Intentaba acceder a grupo[cuenta].
+   Ahora: desde indice = 0 hasta indice < cuenta
+
+9. Se corrigió la comparación de cadenas
+   Antes: if(name == grupo[indice].getName())
+   Error: "==" compara referencias.
+   Ahora: name.equals(grupo[indice].getNombre())
+
+10. Se corrigió el nombre del getter
+    Antes: getName()
+    Ahora: getNombre()
+
+11. Se corrigió el contador de comparaciones
+    Antes: compara solo aumentaba cuando no encontraba.
+    Ahora: compara aumenta en cada iteración.
+
+12. Se eliminó retorno incorrecto de comparaciones
+    Antes:
+       search() retornaba:
+          - índice encontrado
+          - comparaciones
+    Error: Un método no debe retornar dos significados distintos.
+    Ahora:
+       search() solo retorna:
+          posición encontrada
+          o -1
+
+13. Se eliminó condición innecesaria "encontrado"
+    Antes: Se utilizaba: encontrado = true
+    Ahora: Se usa directamente: if(pos != -1)
+
+14. Se corrigió outs()
+    Antes: El método utilizaba "name" sin recibirlo.
+    Ahora: outs(name, pos)
+
+15. Se corrigió validación en outs()
+    Antes: if(encontrado)
+    Error: La variable no existía en el método.
+    Ahora: if(pos != -1)
+
+16. Se corrigió llamada incorrecta en sail()
+    Antes: leer(archi)
+    Ahora: read(archi)
+
+17. Se corrigió llamada incorrecta de búsqueda
+    Antes: pos = busqueda(name)
+    Ahora: pos = search(name)
+
+18. Se agregó opción real de salida
+    Antes: El algoritmo nunca terminaba.
+    Ahora:
+       Se agregó:
+          caso 4 -> salir
+          hasta que(op == 4)
+
+19. Se mejoró consistencia del algoritmo
+    Antes: Existían nombres mezclados en español e inglés.
+    Ahora: Se mantuvo una estructura consistente.
+
+20. Se mejoró formato y organización general
+    Se agregaron:
+       - sangrías
+       - separadores
+       - estructura uniforme
+       - claridad lógica

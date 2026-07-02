@@ -1,0 +1,74 @@
+----- ALGORITMO FIBONACCI -----
+
+1. META:
+    Escribir("""
+                ================= FIBONACCI PROGRAMA =================
+                Programa para imprimir una serie de numeros fibonacci.
+                Famosa por la pelicula \"Codigo D' Vinci\".
+                ======================================================
+                """);
+
+2. int DATA: 
+    esValido = falso; cant = 0;
+
+    Escribir("""
+                Ingrese el numero correspondiente a la cantidad de 
+                numeros deseados en la serie.
+                """);
+    terminar mientras (!esValido) empezar
+        en = ?;
+        si (en.estaVacio()) empezar
+            Escribir("ERROR: Entrada vacia.");
+        si no empezar
+            esValido = llamar a isNum(en);
+            si(esValido) empezar
+                cant = convertir en a valor numerico entero;
+            terminar si
+        terminar si
+    terminar mientras
+    retornar cant;
+    
+2.1 boolean isNum(cad: String)
+    intentar
+        tr = Convertir cad a variable numerico entero;
+        retornar valor booleano verdadero;
+    capturar NumberFormatException nfe empezar
+        Escribir("ERROR: Solo se admiten numeros enteros.");
+        retornar valor booleano falso;
+    terminar intentar
+
+3 y 4. OPERACIONES Y RESULTADOS: fibonacci:
+    fnm1 = fnm2 = fn = n = 0;
+    n = llamar a data();
+    si (n == 1) empezar
+        Escribir(n);
+    sino si (n == 0) empezar
+        Escribir("SERIE VACIA");
+    sino empezar
+        Escribir(fnm1);
+        fnm1 = 1;
+        para (i = 2; i <= n; i++) empezar
+            fn = fnm1 + fnm2;
+            fnm2 = fnm1;
+            fnm1 = fn;
+            Escribir(", " + fn);
+        terminar para
+    terminar si
+
+5. NAVEGABILIDAD: boolean NAV:
+    repeat = true, res = false;
+
+    terminar mientras (repeat) empezar
+        Escribir("¿Desea desplegar otra serie (S) o salir (N)? S/n\n>>>");
+        r = ?;
+
+        si (r.igualIgnorandoMayuscula("s") OR r.estaVacio()) empezar
+            repeat = falso;
+            res = true;
+        sino si (r.igualIgnorandoMayuscula("n")) empezar
+            repeat = false;
+        sino empezar
+            Escribir("ERROR: Opcion invalida! Asegurese de usar solo 'S' o 'N'");
+        terminar si
+    terminar mientras
+    retornar res;

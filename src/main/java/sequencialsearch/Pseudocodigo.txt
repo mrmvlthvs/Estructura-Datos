@@ -1,0 +1,208 @@
+----- ALGORITMO BusquedaSecuencial -----
+1. meta():
+    Escribir("  Registro de personas mediante teclado y lectura de archivo.
+                Usted puede registrar hasta un máximo de 25 personas,
+                buscar a una persona en específico mediante su nombre
+                e imprimir sus datos o la lista completa. ");
+
+2. data():
+    Persona[] grupo = nuevo Persona[25];
+    cuenta = 0; stop = 0;
+
+    terminar mientras (cuenta < grupo.length y stop != 1) empezar
+        grupo[cuenta] = nuevo Persona();
+
+        llamar a solicitarNombre(grupo, cuenta);
+        llamar a solicitarNumControl(grupo, cuenta);
+        llamar a solicitarFechaNacimiento(grupo, cuenta);
+        llamar a solicitarEstatura(grupo, cuenta);
+        llamar a solicitarPeso(grupo, cuenta);
+
+        cuenta = cuenta + 1;
+
+        Escribir("¿Desea continuar registrando más personas?");
+        stop = ?;
+    terminar mientras
+
+2.1 solicitarNombre(Persona grupo, int id):
+    correct = falso;
+
+    terminar mientras (!correct) empezar
+        Escribir("Escriba el nombre completo de la persona");
+        nombre = ?;
+
+        correct = grupo[id].setNombre(nombre);
+
+        si (!correct) empezar
+            Escribir("Asegurese de ingresar un nombre valido");
+        terminar si
+    terminar mientras
+
+2.2 solicitarNumControl(Persona grupo, int id):
+    correct = falso;
+
+    terminar mientras (!correct) empezar
+        Escribir("Escriba el numero de control de la persona");
+        numControl = ?;
+
+        correct = grupo[id].setNControl(numControl);
+
+        si (!correct) empezar
+            Escribir("Asegúrese de escribir correctamente el número de control
+                    (8 dígitos con formato válido)");
+        terminar si
+    terminar mientras
+
+2.3 solicitarFechaNacimiento(Persona grupo, int id):
+    correct = falso;
+    terminar mientras (!correct) empezar
+        intentar empezar
+            Escribir("Ingrese el dia de nacimiento");
+            dia = ?;
+            Escribir("Ingrese el numero de mes de nacimiento");
+            mes = ?;
+            Escribir("Ingrese el año de nacimiento");
+            year = ?;
+            correct = grupo[id].setFecha(dia, mes, year);
+            si (!correct) empezar
+                Escribir("Asegúrese de escribir correctamente la fecha");
+            terminar si
+        capturar error empezar
+            Escribir("Asegurese de usar solo numeros.");
+        terminar intentar
+    terminar mientras
+
+2.4 solicitarEstatura(Persona grupo, int id):
+    correct = falso;
+    terminar mientras (!correct) empezar
+        intentar empezar
+            Escribir("Deme la estatura de la persona");
+            estatura = ?;
+            correct = grupo[id].setEstatura(estatura);
+            si (!correct) empezar
+                Escribir("Asegúrese de escribir correctamente la estatura");
+            terminar si
+        capturar error empezar
+            Escribir("Asegurese de usar un numero decimal valido.");
+        terminar intentar
+    terminar mientras
+
+2.5 solicitarPeso(Persona grupo, int id):
+    correct = falso;
+    terminar mientras (!correct) empezar
+        intentar empezar
+            Escribir("Deme el peso de la persona");
+            peso = ?;
+            correct = grupo[id].setPeso(peso);
+            si (!correct) empezar
+                Escribir("Asegúrese de escribir correctamente el peso");
+            terminar si
+        capturar error empezar
+            Escribir("Asegurese de usar un numero decimal valido.");
+        terminar intentar
+    terminar mientras
+
+2.6 archivo():
+    file = new JFileChooser();
+    file.setDialogTitle("Seleccione un archivo txt");
+    resultado = file.showOpenDialog(nulo);
+    si (resultado == file.APPROVE_OPTION) empezar
+        archivo = file.getSelectedFile();
+        intentar empezar    
+            terminar mientras (linea = leerLinea() != null
+                                and cuenta < grupo.length) empezar
+                String[] datos = linea.split(",");
+
+                si (datos.length == 5) empezar
+                    nombre = datos[0].trim();
+                    numControl = datos[1].trim();
+                    fecha = datos[2].trim();
+                    peso = datos[3].trim();
+                    estatura = datos[4].trim();
+                    grupo[cuenta] = new Persona(nombre, numControl, fecha,
+                    peso, estatura);
+                    cuenta = cuenta + 1;
+                de otro modo empezar
+                    Escribir("Formato incorrecto en la linea: " + linea);
+                terminar si
+            terminar mientras
+            Escribir("Se ha registrado correctamente desde archivo");
+        capturar error empezar
+            Escribir("Error al leer el archivo");
+        terminar intentar
+    de otro modo empezar
+        Escribir("No se selecciono ningun archivo");
+    terminar si
+
+3. buscar():
+    i = 0;
+    encontrado = falso;
+
+    Escribir("Ingrese el nombre a buscar");
+    nombreb = ?;
+
+    si (nombreb es nulo) regresar;
+
+    terminar mientras (i < cuenta y !encontrado) empezar
+        si (grupo[i].getNombre() == nombreb) empezar
+            encontrado = verdadero;
+            Escribir("Persona encontrada");
+            Escribir("Comparaciones: " + (i + 1));
+        de otro modo empezar
+            i = i + 1;
+        terminar si
+    terminar mientras
+
+    posicion = i;
+
+4. imprimir():
+    si (cuenta == 0) empezar
+        Escribir("No hay registros");
+        regresar;
+    terminar si
+
+    i = 0;
+    resultado = "";
+
+    terminar mientras (i < cuenta) empezar
+        resultado = resultado + "Persona " + (i+1);
+        resultado = resultado + grupo[i];
+        i = i + 1;
+    terminar mientras
+
+    Escribir("Lista completa:");
+    Escribir(resultado);
+
+5. main():
+    llamar a meta();
+    opcion = menu();
+
+    terminar mientras (opcion != -1 y opcion != 4) empezar
+
+        segun (opcion) empezar
+            caso 0:
+                llamar a data();
+                romper;
+            caso 1:
+                llamar a archivo();
+                romper;
+            caso 2:
+                llamar a buscar();
+                romper;
+            caso 3:
+                llamar a imprimir();
+                romper;
+        terminar segun
+
+        opcion = menu();
+
+    terminar mientras
+
+5.1 menu(): int
+    Escribir("0. Introducir datos");
+    Escribir("1. Leer archivo");
+    Escribir("2. Buscar persona");
+    Escribir("3. Imprimir lista");
+    Escribir("4. Salir");
+    opcion = ?;
+    regresar opcion;
