@@ -1,0 +1,117 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #14
+Fecha: 4 de marzo de 2026
+
+----- ALGORITMO TestRational -----
+1. meta():
+    Escribir("  Programa de prueba del ADT Rational
+                Permite realizar operaciones entre fracciones");
+
+2.1 data1():
+    stopa = falso;
+    terminar mientras (!stopa) empezar
+        stopa = llamar a fracc1();
+    terminar mientras
+    Rational r1 = new Rational(n1, d1);
+
+2.2 data1():
+    stopb = falso;
+    terminar mientras (!stopb) empezar
+        stopb = llamar a fracc2();
+    terminar mientras
+    Rational r2 = new Rational(n2, d2);
+
+2.1.2 fracc1(): boolean
+    isValid = falso; isInd = verdadero;
+    terminar mientras (!isValid or isInd) empezar
+        Escribir("Ingrese el numerador");
+        n1 = ?;
+        Escribir("Ingrese el denominador");
+        d1 = ?;
+
+        si (n1 no es igual a 0) empezar
+            isValid = verdadero;
+            si (d1 no es igual a 0) empezar
+                isInd = falso;
+            de otro modo empezar
+                Escribir("El denominador no puede ser O.");
+            terminar si
+        de otro modo empezar
+            Escribir("Si el numerador es 0, toda la fraccion es igual a 0.");
+        terminar si
+    terminar mientras
+    retornar verdadero;
+
+2.2.2 fracc2(): boolean
+    isValid = falso; isInd = verdadero;
+    terminar mientras (!isValid or isInd) empezar
+        Escribir("Ingrese el numerador");
+        n2 = ?;
+        Escribir("Ingrese el denominador");
+        d2 = ?;
+
+        si (n2 no es igual a 0) empezar
+            isValid = verdadero;
+            si (d2 no es igual a 0) empezar
+                isInd = falso;
+            de otro modo empezar
+                Escribir("El denominador no puede ser O.");
+            terminar si
+        de otro modo empezar
+            Escribir("Si el numerador es 0, toda la fraccion es igual a 0.");
+        terminar si
+    terminar mientras
+    retornar verdadero;
+
+3.1 operacion():
+    Escribir("  Seleccione una operacion:
+                    0. Sumar
+                    1. Restar
+                    2. Multiplicar
+                    3. Dividir
+                    4. Exponente
+                    5. Negacion
+                    6. Comparar");
+    op = ?;
+    si (op no es igual a 4 or op no es igual a 5) empezar
+        llamar a data2();
+        llamar a proceso(op);
+    de otro modo empezar
+        llamar a proceso(op);
+    terminar si
+
+3.2 proceso(int seleccion):
+    segun seleccion empezar
+        caso 0: resultado = r1.addition(r2); romper;
+        caso 1: resultado = r1.substraccion(r2); romper;
+        caso 2: resultado = r1.multiplicacion(r2); romper;
+        caso 3: resultado = r1.division(r2); romper;
+        caso 4: Escribir("Ingrese el Exponente"); e = ?;
+                resultado = r1.exponentiation(e); romper;
+        caso 5: resultado = r1.negation(); romper;
+        caso 6: eq = r1.equals(r2); romper;
+    terminar segun
+
+4. resultados():
+    segun op empezar
+        caso 0: Escribir(r1 + " + " + r2 + " = " + resultado); romper;
+        caso 1: Escribir(r1 + " - " + r2 + " = " + resultado); romper;
+        caso 2: Escribir(r1 + " * " + r2 + " = " + resultado); romper;
+        caso 3: Escribir(r1 + " / " + r2 + " = " + resultado); romper;
+        caso 4: Escribir(r1 + "^" + e + " = " + resultado); romper;
+        caso 5: Escribir("Negacion de " + r1 + " = " + resultado); romper;
+        caso 6: Escribir(r1 + " == " + r2 + " ? "+ eq); romper;
+    terminar segun
+
+5. main():
+    llamar a meta();
+    llamar a data1();
+    llamar a operacion();
+    llamar a resultados();

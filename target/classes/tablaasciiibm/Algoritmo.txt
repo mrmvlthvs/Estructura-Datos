@@ -1,0 +1,133 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #12
+Fecha: 11 de marzo de 2026
+
+===== ALGORITMO TABLA ASCII IBM PC DE 1980 =====
+
+1. Meta:
+    Escribir("""
+    ================== TABLA ASCII IBM PC DE 1980 ==================
+    Programa para desplegar la tabla de códigos ascii original de la
+    IBM PC de 1980.
+    ================================================================
+    """);
+
+2. Data:
+    Scanner scn;
+    StringBuilder resultado;
+    opcion = -1;
+
+2.1 leerOpcion(mensaje, min, max): entero
+    opcion = -1
+
+    mientras verdadero empezar
+        Escribir(mensaje)
+        si scn.hasNextInt() empezar
+            opcion = scn.nextInt()
+            si opcion >= min y opcion <= max empezar
+                scn.nextLine()
+                retornar opcion
+            terminar
+            de otro modo empezar
+                Escribir("Error: El valor debe estar entre "
+                        + min + " y " + max)
+            terminar
+        terminar
+        de otro modo empezar
+            Escribir("Error: Ingrese solo números enteros.")
+            scn.next()
+        terminar
+        scn.nextLine()
+    terminar mientras
+
+3.1 proceso(opcion):
+    resultado = nuevo StringBuilder()
+    segun opcion hacer
+        caso 1:
+            llamar generarBloque(0, 31,
+                "Bloque 1: Caracteres de Control y Simbolos")
+            romper
+        caso 2:
+            llamar generarBloque(32, 127,
+                "Bloque 2: ASCII Estandar")
+            romper
+        caso 3:
+            llamar generarBloque(128, 255,
+                "Bloque 3: ASCII Extendido")
+            romper
+        caso 4:
+            llamar generarBloque(0, 31,
+                "Bloque 1: Caracteres de Control y Simbolos")
+            llamar generarBloque(32, 127,
+                "Bloque 2: ASCII Estandar")
+            llamar generarBloque(128, 255,
+                "Bloque 3: ASCII Extendido")
+            romper
+        defecto:
+            resultado.append("Opcion no valida.")
+    terminar segun
+
+3.2 generarBloque(inicio, fin, titulo):
+    resultado.append("\n--- " + titulo + " ---\n")
+
+    para codigo = inicio hasta fin incrementar 1 empezar
+        llamar imprimirFilaEnBuffer(codigo)
+    terminar para
+
+3.3 imprimirFilaEnBuffer(codigo):
+    si codigo == 8 o codigo == 9 o
+    codigo == 10 o codigo == 13 empezar
+        resultado.append(
+            "Codigo: " + codigo
+            + " | Caracter: [Control/Espaciado]"
+        );
+    terminar
+    de otro modo empezar
+        resultado.append(
+            "Codigo: " + codigo
+            + " | Caracter: " + (char)codigo
+        );
+    terminar
+
+4.1 resultados():
+    si resultado != null y resultado.length() > 0 empezar
+        Escribir(resultado.toString())
+    terminar
+
+    de otro modo empezar
+        Escribir("No hay resultados para mostrar.")
+    terminar
+
+5.1 navegabilidad():
+    repetir empezar
+        opcion = mostrarMenuYObtenerOpcion()
+        si opcion == 0 romper ciclo
+        llamar proceso(opcion)
+        llamar resultados()
+        Escribir("================================================")
+    terminar repetir
+    Escribir("""
+    ================================================================
+    =                       FIN DEL PROGRAMA                       =
+    ================================================================
+    """);
+
+5.2 mostrarMenuYObtenerOpcion(): entero
+    Escribir("""
+    Ingrese el inciso de la opcion que desee o ingrese 0 para salir.
+        1) Bloque 1 - Caracteres de Control y Simbolos.
+        2) Bloque 2 - ASCII Estandar
+        3) Bloque 3 - ASCII Extendido
+        4) Todo el contenido completo
+        0) SALIR
+    ===============================================================
+    """);
+
+    retornar leerOpcion("Su eleccion >>> ", 0, 4)

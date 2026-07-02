@@ -1,0 +1,174 @@
+===== ALGORITMO MENSAJE ADT =====
+
+1. Meta:
+    Escribir("""
+            ================ MENSAJE ADT - PRUEBA ================
+            Programa que permite probar los axiomas del ADT Mensaje, 
+            para redactar, enviar, visualizar, editar y eliminar 
+            mensajes de forma segura y modular.
+            ======================================================
+            """);
+
+2. Data:
+    remitente = llamar a capturarRemitente();
+    destinatario = llamar a capturarDestinatario();
+    asunto = llamar a capturarAsunto();
+    contenido = llamar a capturarContenido();
+
+    msg = new Mensaje(asunto, contenido, remitente, destinatario);
+
+    Escribir("Datos capturados correctamente."
+            + llamar a msg.mostrarVistaPrevia());
+
+2.1 capturarRemitente:
+    terminar mientras (verdadero) empezar
+        Escribir("Ingrese el remitente (usted): ");
+        remitente = ?
+        si (llamar a msg.setRemitente(remitente)) entonces
+            retornar remitente;
+        si no entonces
+            Escribir("Remitente NO valido, intente de nuevo.");
+    terminar mientras
+
+2.2 capturarDestinatario:
+    terminar mientras (verdadero) empezar
+        Escribir("Ingrese el destinatario: ");
+        destinatario = ?
+        si (llamar a msg.setDestinatario(destinatario)) entonces
+            retornar destinatario;
+        si no entonces
+            Escribir("Destinatario NO valido, intente de nuevo.");
+    terminar mientras
+
+2.3 capturarAsunto:
+    terminar mientras (verdadero) empezar
+        Escribir("Escriba el asunto: ");
+        asunto = ?
+        si (llamar a msg.setAsunto(asunto)) entonces
+            retornar asunto;
+        si no entonces
+            Escribir("Longitud invalida. (Max. 20 caracteres).");
+    terminar mientras
+
+2.4 capturarContenido:
+    terminar mientras (verdadero) empezar
+        Escribir("Escriba el contenido: ");
+        contenido = ?
+        si (llamar a msg.setContenido(contenido)) entonces
+            retornar contenido;
+        si no entonces
+            Escribir("Longitud invalida. (1-200 caracteres).");
+    terminar mientras
+
+3. Proceso:
+    Recibir atributo 'option'
+    segun (option) hacer
+        caso 1: 
+            si (llamar a msg.enviar()) entonces
+                Escribir("Mensaje enviado.");
+            sino entonces
+                Escribir("Error al enviar el mensaje.");
+            terminar si
+            romper;
+        caso 2:
+            llamar a edicion();
+            romper;
+        caso 3: 
+            llamar a eliminar();
+            romper;
+        caso 4:
+            llamar a msg.marcarLeido();
+            Escribir(llamar a msg.mostrarMensaje());
+            romper;
+    terminar segun 
+
+3.1 edicion:
+    opt = llamar a menuEdit();
+    si (llamar a msg.getID() != -1) empezar
+        segun opt hacer 
+            caso 1: 
+                nuevoRem = llamar a capturarRemitente();
+                llamar a msg.setRemitente(nuevoRem);
+                romper;
+            caso 2: 
+                nuevoDest = llamar a capturarDestinatario();
+                llamar a msg.setDestinatario(nuevoDest);
+                romper;
+            caso 3:
+                nuevoAsunto = llamar a capturarAsunto();
+                llamar a msg.setAsunto(nuevoAsunto);
+                romper;
+            caso 4: 
+                nuevoCont = llamar a capturarContenido();
+                llamar a msg.setContenido(nuevoCont);
+                romper;
+        terminar segun
+        Escribir("Mensaje actualizado.");
+    si no entonces 
+        Escribir("No existe el mensaje o fue eliminado.");
+    terminar si
+
+3.2 eliminar:
+    si (llamar a msg.eliminar()) entonces
+        Escribir("Mensaje eliminado.");
+        llamar a msg.destruirMensaje();
+    terminar si
+
+4. Resultados:
+    Escribir(llamar a msg.mostrarMensaje());
+
+5. Navegabilidad:
+    llamar a meta();
+    llamar a data();
+    opcion = 0;
+    terminar mientras (option != 5) empezar
+        option = llamar a menuPrincipal();
+        si (opcion != 5) entonces
+            llamar a proceso(opcion);
+        terminar si
+    terminar mientras
+    llamar a resultados();
+
+5.1 menuPrincipal:int :
+    opcion = 0;
+    valido = falso;
+
+    terminar mientras (!valido) empezar
+        Escribir("""
+            OPCIONES DEL MENSAJE:
+            1) Enviar mensaje
+            2) Editar mensaje
+            3) Eliminar mensaje
+            4) Ver mensaje actual
+            5) Salir
+            Su eleccion >>> """);
+        opcion = ?
+        si opcion es valido entonces
+            valido = verdadero;
+        sino entonces
+            Escribir("ERROR: Ingrese un numero entre 1-5.");
+        terminar si
+    terminar mientras
+    retornar opcion;
+    
+5.2 menuEdit:int :
+    opcion = 0;
+    valido = falso;
+
+    terminar mientras (!valido) empezar
+        Escribir("""
+            OPCIONES DE EDICION:
+            1) Editar remitente
+            2) Editar destinatario
+            3) Editar asunto
+            4) Editar contenido
+            5) Cancelar
+            Su eleccion >>> """);
+        opcion = ?
+        si opcion es valido entonces
+            valido = verdadero;
+        sino entonces
+            Escribir("ERROR: Ingrese un numero entre 1-5.");
+        terminar si
+    terminar mientras
+    retornar opcion;

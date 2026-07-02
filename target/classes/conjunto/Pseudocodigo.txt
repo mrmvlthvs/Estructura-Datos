@@ -1,0 +1,94 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #18
+Fecha: 18 de marzo de 2026
+
+----- ALGORITMO TestConjunto -----
+
+1. meta():
+    Escribir("  El siguiente programa permite al usuario probar las 
+                diferentes prestaciones del programa Conjunto.");
+
+2. data():
+    Conjunto a = new Conjunto();
+    Conjunto b = new Conjunto();
+    back = falso;
+    Escribir("Ingrese la cantidad deseada de elementos del conjunto A");
+    size = ?; 
+    llamar a conjA(size);
+    Escribir("Ingrese la cantidad deseada de elementos del conjunto B");
+    size = ?; 
+    llamar a conjB(size);
+    llamar a menuPrincipal();
+
+2.2 conjA(int size):
+    para (i = 0 hasta i menor que size) empezar
+        Escribir("Ingrese un valor entero como elemento"
+                + "\n(Valor por defecto = 0)");
+        elemento = ?;
+        a.add(elemento);
+    terminar para
+
+2.3 conjB(int size):
+    para (i = 0 hasta i menor que size) empezar
+        Escribir("Ingrese un valor entero como elemento"
+                + "\n(Valor por defecto = 0)");
+        elemento = ?;
+        b.add(elemento);
+    terminar para
+
+3. menuOperaciones(int op):
+    segun op empezar   
+        caso 0: Conjunto union = a.union(b);
+                llamar a resultado(union, op);
+                romper;
+        caso 1: Conjunto inter = a.intersection(b);
+                llamar a resultado(inter, op);
+                romper;
+        caso 2: Conjunto diff = a.difference(b);
+                llamar a resultado(diff, op);
+                romper;
+    terminar segun
+
+3.1 agregarElemento(int value, int wconj):
+    segun wconj empezar 
+        caso 0: a.add(value); romper;
+        caso 1: b.add(value); romper;
+    terminar segun
+
+3.2 eliminarElemento(int value, int wconj):
+    segun wconj empezar 
+        caso 0: a.remove(value); romper;
+        caso 1: b.remove(value); romper;
+    terminar segun
+
+3.3 encontrarElemento(int value, int wconj):
+    segun wconj empezar 
+        caso 0: Escribir("Elemento " + value + " esta en el conjunto?\n" 
+                        + a.contains(value)); romper;
+        caso 1: Escribir("Elemento " + value + " esta en el conjunto?\n" 
+                        + b.contains(value)); romper;
+    terminar segun
+
+4. resultado(Conjunto operacion, int op):
+    segun op empezar
+        caso 0: Escribir("A union con B = " + operacion);
+                romper;
+        caso 1: Escribir("A interseccion con B = " + operacion);
+                romper;
+        caso 2: Escribir("A diferencia con B = " + operacion);
+                romper;
+    terminar segun
+
+5. main():
+    llamar a meta();
+    llamar a data();
+    terminar mientras (!back) empezar
+        llamar a menuPrincipal();
+    terminar mientras

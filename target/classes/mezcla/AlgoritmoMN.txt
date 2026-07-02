@@ -1,0 +1,296 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #29
+Fecha: 20 de abril de 2026
+
+===== ALGORITMO MEZCLA NATURAL =====
+
+1. meta()
+    Escribir("Programa que ordena datos ingresados por teclado o archivo mediante el método de ordenamiento 'Mezcla natural'. Reporta el número de comparaciones y movimientos realizados.");
+
+2. data()
+    Escribir("Seleccione el medio de origen de los datos a ingresar:\n0. Teclado\n1. Archivo");
+    opcionOrigen = leer opcion;
+    
+    segun opcionOrigen empezar
+        caso 0: 
+            llamar teclado(); 
+            romper;
+        caso 1: 
+            llamar archivo(); 
+            romper;
+    terminar segun
+    llamar ordenar();
+
+2.1. teclado()
+    titulo = "DATOS POR TECLADO";
+    mensaje = "Ingrese un número entero (máximo 100 datos).\nEscriba 'parar' para finalizar la captura.";
+    inicializar listaDinamica vacía;
+    
+    mientras (longitud(listaDinamica) < 100) empezar
+        datoObtenido = llamar isNum(titulo, mensaje);
+        
+        si (datoObtenido es nulo) empezar
+            romper mientras;
+        terminar si
+        
+        agregar datoObtenido a listaDinamica;
+    terminar mientras
+    
+    contador = longitud(listaDinamica);
+    listaDatos = nuevo arreglo de enteros con tamaño 100;
+    para i desde 0 hasta contador - 1 empezar
+        listaDatos[i] = obtener elemento i de listaDinamica;
+    terminar para
+    
+    si (contador == 100) empezar
+        Escribir("Límite máximo de datos alcanzado (100).");
+    de otro modo empezar
+        Escribir("Se ingresaron " + contador + " datos.");
+    terminar si
+
+2.a. isNum(titulo, mensaje)
+    valido = falso;
+    numero = nulo;
+    
+    mientras (no valido) empezar
+        aux = leer cadena del usuario(titulo, mensaje);
+        
+        si (aux es nulo) empezar
+            aux = "";
+        terminar si
+        
+        si (aux.trim() es igual a "parar" sin importar mayúsculas) empezar
+            retornar nulo; 
+        terminar si
+        
+        intentar empezar
+            numero = convertir aux.trim() a entero;
+            valido = verdadero;
+        capturar error empezar
+            Escribir("No es un número entero válido ni la palabra de parada. Intente de nuevo.");
+        terminar intentar
+    terminar mientras
+    retornar numero;
+
+2.2. archivo()
+    Abrir archivo con selector de archivos
+    si (se seleccionó un archivo válido) empezar
+        archivo = archivo seleccionado;
+        inicializar listaDinamica vacía;
+        
+        intentar empezar
+            Abrir canal de lectura para el archivo
+            mientras (haya tokens por leer en el archivo y longitud(listaDinamica) < 100) empezar
+                token = leer siguiente token del archivo;
+                
+                intentar empezar
+                    num = convertir token a entero;
+                    agregar num a listaDinamica;
+                capturar error empezar
+                    Escribir("Dato no numérico ignorado: " + token);
+                terminar intentar
+            terminar mientras
+            
+            si (haya más tokens en el archivo y longitud(listaDinamica) == 100) empezar
+                Escribir("Solo se leyeron los primeros 100 números.");
+            terminar si
+            
+            contador = longitud(listaDinamica);
+            
+            si (contador == 0) empezar
+                fileIsOpen = falso;
+                Escribir("No se encontraron números enteros en el archivo. Seleccione otro archivo.");
+            de otro modo empezar
+                listaDatos = nuevo arreglo de enteros con tamaño 100;
+                para i desde 0 hasta contador - 1 empezar
+                    listaDatos[i] = obtener elemento i de listaDinamica;
+                terminar para
+                Escribir("Se leyeron " + contador + " números desde el archivo.");
+            terminar si
+        capturar error empezar
+            Escribir("Error al leer el archivo.");
+        terminar intentar
+    de otro modo empezar
+        Escribir("No se seleccionó ningún archivo.");
+    terminar si
+
+3. proceso(opcion)
+    segun opcion empezar
+        caso 0:
+            llamar data();
+            romper;
+        caso 1:
+            si (contador == 0) empezar
+                Escribir("No existen registros para imprimir.");
+            de otro modo empezar
+                Escribir("Elija medio: 0. Terminal, 1. Archivo");
+                medio = leer medio;
+                llamar imprimir(medio);
+            terminar si
+            romper;
+    terminar segun
+
+3.1. ordenar()
+    si (contador == 0) empezar
+        Escribir("No hay datos cargados para ordenar.");
+        retornar;
+    terminar si
+    
+    toSort = nuevo arreglo copiando listaDatos desde 0 hasta contador - 1;
+    llamar naturalMerge(toSort, contador);
+    
+    para i desde 0 hasta contador - 1 empezar
+        listaDatos[i] = toSort[i];
+    terminar para
+    
+    salida = "Comparaciones: " + comparaciones + "\nMovimientos (asignaciones): " + movimientos;
+    Escribir("Procesando ordenamiento por mezcla natural...");
+    Escribir(salida);
+    Escribir("Ordenamiento terminado.");
+
+3.b. naturalMerge(array, n)
+    aux = nuevo arreglo de enteros con tamaño n;
+    ordenado = falso;
+    comparaciones = 0;
+    movimientos = 0;
+
+    mientras (no ordenado) empezar
+        i = 0;
+        k = 0;
+        ordenado = verdadero;
+
+        mientras (i < n) empezar
+            start1 = i;
+            mientras (i + 1 < n y array[i] <= array[i + 1]) empezar
+                comparaciones = comparaciones + 1;
+                i = i + 1;
+            terminar mientras
+            si (i + 1 < n) empezar
+                comparaciones = comparaciones + 1;
+            terminar si
+            end1 = i;
+
+            si (i + 1 >= n) empezar
+                para x desde start1 hasta end1 empezar
+                    aux[k] = array[x];
+                    k = k + 1;
+                    movimientos = movimientos + 1;
+                terminar para
+                romper mientras;
+            terminar si
+            
+            ordenado = falso;
+            start2 = i + 1;
+            i = i + 1;
+
+            mientras (i + 1 < n y array[i] <= array[i + 1]) empezar
+                comparaciones = comparaciones + 1;
+                i = i + 1;
+            terminar mientras
+            si (i + 1 < n) empezar
+                comparaciones = comparaciones + 1;
+            terminar si
+            end2 = i;
+            
+            p = start1;
+            q = start2;
+
+            mientras (p <= end1 y q <= end2) empezar
+                comparaciones = comparaciones + 1;
+                si (array[p] <= array[q]) empezar
+                    aux[k] = array[p];
+                    p = p + 1;
+                de otro modo empezar
+                    aux[k] = array[q];
+                    q = q + 1;
+                terminar si
+                movimientos = movimientos + 1;
+                k = k + 1;
+            terminar mientras
+            
+            mientras (p <= end1) empezar
+                aux[k] = array[p];
+                p = p + 1;
+                k = k + 1;
+                movimientos = movimientos + 1;
+            terminar mientras
+            
+            mientras (q <= end2) empezar
+                aux[k] = array[q];
+                q = q + 1;
+                k = k + 1;
+                movimientos = movimientos + 1;
+            terminar mientras
+            
+            i = i + 1;
+        terminar mientras
+        
+        para i desde 0 hasta n - 1 empezar
+            array[i] = aux[i];
+            movimientos = movimientos + 1;
+        terminar para
+    terminar mientras
+
+4. imprimir(medio)
+    segun medio empezar
+        caso 0:
+            Escribir("=== ESTADÍSTICAS DE ORDENAMIENTO ===");
+            Escribir(salida);
+            Escribir("===== DATOS REGISTRADOS =====");
+            para i desde 0 hasta contador - 1 empezar
+                Escribir("DATO #" + (i + 1) + ":\t" + listaDatos[i]);
+            terminar para
+            Escribir("===== FIN DEL ARREGLO =====");
+            romper;
+        caso 1:
+            resultadosTexto = "Estadísticas de Ordenamiento (Mezcla Natural):\n" + salida + "\n\n===== DATOS ORDENADOS =====\n";
+            para i desde 0 hasta contador - 1 empezar
+                resultadosTexto = resultadosTexto + listaDatos[i] + "\n";
+            terminar para
+            llamar crearArchivo(resultadosTexto);
+            romper;
+    terminar segun
+
+4.1. crearArchivo(resultado)
+    Seleccionar ruta de guardado con selector de archivos
+    si (se confirmó la ruta de guardado) empezar
+        archivo = archivo seleccionado;
+        si (archivo no termina en ".txt") empezar
+            archivo = archivo + ".txt";
+        terminar si
+        
+        intentar empezar
+            Abrir canal de escritura para el archivo
+            escribir en archivo (resultado);
+            Escribir("Archivo guardado correctamente.");
+        capturar error empezar
+            Escribir("Ocurrió un error al crear el archivo.");
+        terminar intentar
+    de otro modo empezar
+        Escribir("Operación cancelada por el usuario.");
+    terminar si
+
+4.2. resultados()
+    Escribir("Ejecución finalizada de manera ordenada. ¡Buen día!");
+
+5. navegabilidad()
+    llamar meta();
+    opcion = 0;
+    
+    mientras (opcion != 2) empezar
+        Escribir("MENU PRINCIPAL:\n0. Registrar datos\n1. Imprimir datos\n2. SALIR");
+        opcion = leer opcion del usuario;
+        
+        si (opcion != 2) empezar
+            llamar proceso(opcion);
+        terminar si
+    terminar mientras
+    
+    llamar resultados();

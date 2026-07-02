@@ -1,0 +1,113 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #33
+Fecha: 6 de mayo de 2026
+
+===== ALGORITMO TRANSPUESTA CON VALIDACIÓN DE SALIDA S/N =====
+
+1. inicio()
+    Escribir("Calcula LA TRANSPUESTA DE UNA MATRIZ Y COMPROBACIÓN O(n²)")
+
+2. capInt(prompt)
+    mientras (verdadero) empezar
+        Escribir(prompt)
+        entrada = leer de la terminal
+        intentar empezar
+            retornar convertir entrada a entero
+        capturar error
+            Escribir("Error: Ingrese unicamente un numero entero valido.")
+    terminar mientras
+
+3. capReal(prompt)
+    mientras (verdadero) empezar
+        Escribir(prompt)
+        entrada = leer de la terminal
+        intentar empezar
+            retornar convertir entrada a real
+        capturar error
+            Escribir("Error: Ingrese unicamente un numero real valido.")
+    terminar mientras
+
+4. capOpcion(prompt)
+    mientras (verdadero) empezar
+        Escribir(prompt)
+        entrada = leer de la terminal sin espacios y en mayúsculas
+        si (entrada es igual a "S" o entrada es igual a "N") entonces
+            retornar entrada
+        de otro modo
+            Escribir("Error: Opcion no valida. Ingrese estrictamente 'S' para si o 'N' para no.")
+    terminar mientras
+
+5. entradas(matrizOriginal)
+    hacer
+        fil = llamar capInt("¿Cuántos renglones tiene su matriz?:")
+    mientras (fil < 0)
+    
+    hacer
+        col = llamar capInt("¿Cuántas columnas hay en su matriz?:")
+    mientras (col < 0)
+    
+    Inicializar matrizOriginal con dimensiones [fil][col]
+    
+    desde i = 0; mientras i < fil; incrementar i para
+        desde j = 0; mientras j < col; incrementar j para empezar
+            matrizOriginal[i][j] = llamar capReal("Matriz[" + i + ", " + j + "]:")
+        terminar
+        
+    retornar matrizOriginal
+
+6. calculaTransp(columnas, filas)
+    Inicializar matrizTranspuesta con dimensiones [columnas][filas]
+    operaciones = 0
+    
+    desde i = 0; mientras i < filas; incrementar i para
+        desde j = 0; mientras j < columnas; incrementar j para empezar
+            matrizTranspuesta[j][i] = matriz[i][j]
+            operaciones = operaciones + 1
+        terminar
+        
+    retornar matrizTranspuesta
+
+7. mostrar(matrizAExhibir)
+    desde j = 0; mientras j < longitud(matrizAExhibir); incrementar j para empezar
+        desde i = 0; mientras i < longitud(matrizAExhibir[j]); incrementar i para
+            Imprimir sin saltar(matrizAExhibir[j][i] + "\t")
+        saltar renglón
+    terminar
+
+8. resultados()
+    Escribir("Matriz Original:")
+    llamar mostrar(matriz)
+    
+    Escribir("MATRIZ TRANSPUESTA:")
+    llamar mostrar(transp)
+    
+    Escribir("========================================================")
+    Escribir("         RENDIMIENTO Y COMPLEJIDAD ALGORÍTMICA          ")
+    Escribir("========================================================")
+    Escribir("Dimensiones evaluadas: " + fil + " filas x " + col + " columnas.")
+    Escribir("Número de asignaciones (intercambios de posición): " + operaciones)
+    Escribir("Demostración de complejidad Teórica:")
+    Escribir(" -> f(n) = filas * columnas.")
+    Escribir(" -> En matrices cuadradas n x n efectúa n² operaciones.")
+    Escribir(" -> Desempeño asintótico estrictamente O(n²).")
+    Escribir("========================================================")
+
+9. Principal / Bucle de retroalimentación
+    llamar inicio()
+    resp = "S"
+    
+    mientras (resp es igual a "S") empezar
+        matriz = llamar entradas(matriz)
+        transp = llamar calculaTransp(col, fil)
+        llamar resultados()
+        
+        resp = llamar capOpcion("¿Quiere trasponer otra matriz? s/n:")
+    terminar
+    Escribir("Ejecución finalizada.")

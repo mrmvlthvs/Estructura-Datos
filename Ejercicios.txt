@@ -1,0 +1,169 @@
+16 de Febrero 2026
+
+Ejercicio 1: Favor de elaborar un algoritmo con enfoque de sistemas que tenga 
+             1. Meta:
+             2. Data:
+             3: Procedimiento:
+             4: Resultados:
+             5: Navegabilida:
+             
+             Y que permita capturar los datos de la ficha propuesta durante
+             la primer sesion del curso del dia 16 de Febrero del 2026
+             Permitiendo almacenar la informacion en archivo o arreglo
+             para hacer busqueda secuencial.
+             
+18 febrero 2026             
+             
+ejercicio 2: Favor de completar el algoritmo propuesto en el curso el dia 
+             18 de febrero del 2026 para capturar y reportar Cadenas de texto
+             por medio de un dato centinela.   
+             
+25 febrero 2026             
+             
+ejercicio 3: analizar el algoritmo enviado a su correo electronico, que  
+             pretende diseñar las actividades de la busqueda secuencial 
+             para refinarlo y eliminar los posibles fallos (bugs).  
+             
+ejercicio 4: Favor de dibujar el diagrama UML para la clase persona
+             que incluya los atributos: nombre, control, fechaNac,
+             peso y estatura. Casi como la ficha de captura elaborada
+             el dia 16 de febrero.
+             
+ejercicio 5: Favor de codificar la clase encapsulada Persona, en su lenguaje
+             de programación favorito excepto python
+             
+ejercicio 6: Favor de codificar la clase de prueba para resolver el algoritmo
+             de busqueda secuencial conforme a la refinacion del ejercicio 3.
+             incluyendo solo la captura de datos por teclado
+             
+ejercicio 7: incluir en su clase de prueba del ejercicio 6 tanto la validación
+             de los datos de entrada por teclado, como la lectura de datos por
+             archivo CSV (coma separated values).           
+             
+2 marzo 2026
+
+Ejercicio 8: Favor de modificar el algoritmo revisado del ejercicio 3 para 
+             resolver un problema similar al de busqueda secuencial pero ahora
+             aplicando el algoritmo de busqueda binaria.
+             
+Ejercicio 9: Ahora codifique el algoritmo modificado del ejercicio 8 en una clase
+             de prueba que reutilice los artefactos del ejercicio 7 para probar
+             la busqueda binaria en su lenguaje de programación favorito y 
+             ejecutelo. 
+             
+4 marzo 2026             
+             
+Ejercicio 10: Favor de escribir un programa en Java capaz de desplegar los 
+               valores maximos y minimos permitidos por los 8 tipos de datos
+               primitivos del lenguaje.
+
+Ejercicio 11: Haga un programa en C que revele los valores maximos y minimos
+               de los tipos primitivos en el lenguaje.   
+               
+Ejercicio 12: Favor de desplegar la tabla de códigos ascii original de la 
+              IBM PC de 1980 mediante un programa en java o python.   
+              
+ejercicio 13: Favor de dibujar el diagrama de UML que corresponde al 
+              Rational ADT. Y codifique los artefactos que en el se diseñan
+              
+Ejercicio 14: Favor de completar el algoritmo propuesto en el aula virtual
+              para  probar las operaciones con numeros Racionales y el tipo
+              de datos Abstracto RationalADT.pdf complete las prestaciones
+              de Rational.java dando acceso a los valores originales capturados
+              y codifique su algoritmo para probar la estructura junto con 
+              la interface Rationalizable. Utilice su lenguaje de programación 
+              favorito. Excepto python.       
+              
+11 de marzo 2026
+
+Ejercicio # 15: Favor de documentar por medio de un archivo PDF las prestaciones
+               de un nuevo tipo de datos Abstracto llamado conjunto.
+               
+               Por favor incluya en el vistazo (overview) la defincion y 
+               axiomas que se presentan ademas de las funciones que requiere
+               dicha estructura de datos.
+               
+ejercicio # 16: Por favor utilice el ejercicio 15 anterior para dibujar
+               un Diagrama UML que incluya una interface con las prestaciones
+               abstractas de la clase Conjunto que implemente la interface
+               conjuntable.
+               
+ejercicio # 17: Favor de codificar en su lenguaje de programación favorito 
+               excepto python, el diagrama UML propuesto para el ADT
+               conjunto en el ejercicio 16 anterior.
+               
+ejercicio # 18: Elabore un algoritmo en pseudocodigo con enfoque de sistemas
+               cuya lógica permita probar las operaciones del ADT conjunto
+               diseñado en los ejercicio 15, 16, 17 anteriores.   
+
+Ejercicio # 19: Favor de codificar guardar, compilar, depurar y correr
+                la clase de prueba correspondiente al algoritmo del ejercicio
+                18 anterior para demostrar las prestaciones del ADT Conjunto   
+                
+Viernes 20 Marzo 2026                           
+                                                                                                   
+Ejercicio # 20: Favor de correr la clase Lista.java que incluye los 4 tipos de 
+               lazos en el lenguaje de programación Java.      
+               
+Miercoles 25 Marzo del 2026
+
+Ejercicio # 21: Favor de modelar el algoritmo correspondiente al ordenamiento 
+                burbuja conforme a la teoria general de sistemas. Contemple que
+                los datos puedan ser leidos de teclado y/o archivo y que los 
+                resultados pueden verse en pantalla y/o almacenarse en archivo.
+                Considere que el resultado habra de reportar el Numero de 
+                comparaciones e intercambios necesarios para su ordenamiento.
+                
+Ejercicio # 22: Codifique la clase de prueba correspondiente al algoritmo del
+                ejercicio anterior incluyendo lectura de datos por teclado y/o
+                por archivo y la salida de resultados por pantalla y/o por 
+                archivo.          
+                
+Ejercicio # 23: Favor de modelar algoritmo correspondiente al ordenamiento
+                shell de manera similar al solicitado por el ejercicio 21.
+                
+Ejercicio # 24: Favor de codificar la clase de prueba que implemente el 
+                algoritmo del ejercicio 23 de modo similar al ejercicio 22.
+                
+15 Abril 2026                
+                
+Ejercicio # 25: Lo mismo que el ejercicio 23 pero ahora con el metodo de 
+                ordenamiento Rapido (QuickSort). Recuerde permitir la entrada
+                de los datos por archivo y por teclado, y emitir la salida 
+                tanto a la pantalla como al archivo, cuente el numero de 
+                comparaciones y de intercambios en el procedimiento apropiado
+                y reporte todas las metricas oportunamente.
+                
+Ejercicio # 26: Lo mismo que el ejercicio 24 pero ahora respecto al algoritmo
+                solicitado en el ejercicio 25   
+                
+20 Abril 2026                
+                
+ejercicio # 27: Favor de teclear guardar commpilar y correr la clase MergeSortLista.java 
+                que permite probar el algoritmo de intercalación de archivos previamente 
+                ordenados.       
+                
+Ejercicio # 28: Favor de diseñar un algoritmo que permita leer un archivo de datos
+                particionar su contenido y aplicar el ordenamiento externo con
+                mezcla directa. Codifiquelo en su lenguaje de programación 
+                favorito y muestre tanto el archivo original como el ordenado.
+                
+Ejercicio # 29: Lo mismo que el ejercicio 28 pero ahora para el algoritmo de 
+                ordenamiento externo con mezcla natural.  
+                
+6 de mayo 2026
+
+Ejercicio # 30: Favor de correr el programa Fibonacci.java junto y modifiquelo
+                para que sea posible medir el tiempo de ejecución. de 1000 
+                corridas de la serie usando el codigo del programa 
+                TimeElapsed.java
+
+Ejercicio # 31: Favor de comparar los casos mejor, peor y promedio de los 
+                algoritmos de busqueda secuencial y binaria. haga una tabla 
+                comparativa que incluya el # de datos procesados y el tiempo
+                transcurrido para las busquedas durante la ejecución de los
+                programas.
+                
+Ejercicio # 32: Lo mismo que el ejercicio 31 anterior pero ahora compare 
+                los algoritmos de ordenamiento externo por intercalación
+                directa y por intercalación natural.   

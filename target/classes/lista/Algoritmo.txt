@@ -1,0 +1,96 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+    Lunes y miércoles de 8:45 a 10:25
+    Viernes de 8:45 a 9:35
+Alumno: Marlene Inés Moreno Velázquez
+Ejercicio #20
+Fecha: 20 de marzo de 2026
+
+===== ALGORITMO LISTA DE NOMBRES =====
+
+1. Meta:
+    Escribir("Para desplegar una lista de nombres")
+    Escribir("Del grupo B de estructuras de datos")
+    Escribir("Usando un lazo iterativo (for-each)")
+
+2. Data:
+    String nombres[] = nuevo String[25]
+    Scanner tecla
+    String nombre = null
+    boolean sigue = false
+    String resp = "S"
+
+2.1 listaArchivos(path):
+    canal = nuevo File(path)
+    lista[] = canal.listFiles()
+    l = "Archivos presentes en el subdirectorio de trabajo:"
+    l = l + path + "\n\n"
+    para i = 0 hasta lista.length - 1 incrementar 1 empezar
+        l = l + lista[i] + "\n"
+    terminar para
+    Escribir(l)
+
+2.2 data(): String
+    nombre = null
+    hacer empezar
+        Escribir("Deme el nombre del archivo o <enter> :")
+        nombre = tecla.nextLine()
+
+        si nombre.equals("") empezar
+            llamar listaArchivos(".")
+        terminar
+    terminar mientras nombre.length() <= 0
+    retornar nombre
+
+2.3 dataArch(arch): boolean
+    Scanner archi = null
+    File f = null
+    flag = false
+    intentar empezar
+        f = nuevo File(arch)
+        i = 0
+        si f.exists() y f.canRead() empezar
+            archi = nuevo Scanner(f)
+            mientras archi.hasNextLine() y i < nombres.length empezar
+                nombres[i] = nuevo String(archi.nextLine())
+                i++
+            terminar mientras
+            flag = true
+        terminar
+    capturar FileNotFoundException empezar
+        Escribir("No existe el archivo: " + arch)
+    terminar intentar
+    finalmente empezar
+        si archi != null empezar
+            archi.close()
+        terminar
+    terminar finalmente
+    retornar flag
+
+3. Proceso:
+// No hay cálculos ni procesamiento de datos
+
+4.1 display():
+    para cada String n en nombres empezar
+        si n != null empezar
+            Escribir(n)
+        terminar
+    terminar para
+
+5.1 Principal:
+    crear objeto l de tipo Lista
+    llamar l.meta()
+    mientras resp.toUpperCase().charAt(0) == 'S' empezar
+        hacer empezar
+            nom = llamar l.data()
+            sigue = llamar l.dataArch(nom)
+        terminar mientras !sigue
+        llamar l.display()
+        hacer empezar
+            Escribir("Quiere desplegar otro archivo? s/n:")
+            resp = l.tecla.nextLine()
+        terminar mientras resp.length() <= 0
+    terminar mientras

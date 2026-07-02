@@ -1,0 +1,651 @@
+MATERIA: ESTRUCTURA DE DATOS
+UNIDAD: BUSQUEDA, ORDENAMIENTO Y TIPOS DE DATOS ABSTRACTOS
+ALUMNA: MARLENE INES MORENO VELAZQUEZ
+INSTITUTO TECNOLOGICO DE LEON
+===============================================================================
+
+===============================================================================
+                  BUSQUEDA SECUENCIAL
+===============================================================================
+
+DEFINICION:
+La búsqueda secuencial consiste en recorrer una colección de datos elemento por
+elemento hasta encontrar el dato solicitado o llegar al final de la colección.
+
+FUNCIONAMIENTO:
+- Compara un dato contra cada elemento.
+- Se detiene cuando encuentra coincidencia.
+- Si no encuentra el dato devuelve error o -1.
+
+CARACTERISTICAS:
+- Simple de implementar.
+- No requiere datos ordenados.
+- Puede trabajar con arreglos o archivos.
+- Su eficiencia disminuye con muchos datos.
+
+COMPLEJIDAD:
+- Mejor caso: O(1)
+- Peor caso: O(n)
+- Caso promedio: O(n)
+
+VARIABLES IMPORTANTES:
+- indice
+- encontrado
+- comparaciones
+- cuenta
+
+EJERCICIOS RELACIONADOS:
+- Ejercicio 1
+- Ejercicio 3
+- Ejercicio 6
+- Ejercicio 7
+
+ERRORES DETECTADOS EN EL ALGORITMO:
+- Comparar cadenas con ==.
+- Falta de actualización del centinela.
+- Riesgo de desbordamiento del arreglo.
+- No validar entradas.
+- Variables fuera de alcance.
+- No cerrar archivos correctamente.
+
+CORRECCIONES IMPORTANTES:
+- Usar equalsIgnoreCase().
+- Validar límite del arreglo.
+- Separar DATA, PROCESO y RESULTADOS.
+- Implementar centinela correctamente.
+
+OBSERVACIONES:
+La búsqueda secuencial fue utilizada para buscar personas por nombre dentro de
+arreglos de objetos Persona.
+
+
+===============================================================================
+                                BUSQUEDA BINARIA
+===============================================================================
+
+DEFINICION:
+Método de búsqueda que divide continuamente el conjunto de datos ordenados en 
+dos partes.
+
+REQUISITOS:
+- Los datos deben estar ordenados.
+
+FUNCIONAMIENTO:
+1. Obtener punto medio.
+2. Comparar dato buscado.
+3. Descartar mitad innecesaria.
+4. Repetir hasta encontrar.
+
+VARIABLES IMPORTANTES:
+- inicio
+- fin
+- medio
+
+COMPLEJIDAD:
+- Mejor caso: O(1)
+- Peor caso: O(log n)
+
+VENTAJAS:
+- Mucho más rápida que secuencial.
+- Reduce comparaciones.
+
+DESVENTAJAS:
+- Requiere datos ordenados.
+
+EJERCICIOS RELACIONADOS:
+- Ejercicio 8
+- Ejercicio 9
+
+OBSERVACION:
+La búsqueda binaria reutilizó los artefactos de captura y validación 
+construidos para búsqueda secuencial.
+
+
+========================================================
+TIPOS DE DATOS ABSTRACTOS (TDA)
+========================================================
+
+DEFINICION:
+Un TDA es una estructura lógica definida por:
+- Sus datos.
+- Sus operaciones.
+- Su comportamiento.
+
+IMPORTANTE:
+El usuario utiliza el TDA sin conocer la implementación interna.
+
+CARACTERISTICAS:
+- Encapsulamiento.
+- Reutilización.
+- Modularidad.
+- Abstracción.
+
+EJEMPLOS:
+- Rational
+- Conjunto
+- Lista
+- Pila
+- Cola
+
+RELACION CON UML:
+Los TDA se modelaron mediante:
+- Clases
+- Interfaces
+- Métodos abstractos
+
+EJERCICIOS RELACIONADOS:
+- Ejercicio 13
+- Ejercicio 14
+- Ejercicio 15
+- Ejercicio 16
+- Ejercicio 17
+- Ejercicio 18
+- Ejercicio 19
+
+
+===============================================================================
+                  EJEMPLOS DE TDA's
+===============================================================================
+
+          TDA PERSONA
+-------------------------------------------------------------------------------
+ATRIBUTOS:
+- nombre
+- control
+- fechaNac
+- peso
+- estatura
+
+OPERACIONES:
+- getNombre()
+- setNombre()
+- getControl()
+- setControl()
+
+UTILIZACION:
+- Búsqueda secuencial.
+- Búsqueda binaria.
+
+-------------------------------------------------------------------------------
+          TDA RATIONAL
+-------------------------------------------------------------------------------
+
+REPRESENTA:
+Fracciones matemáticas.
+
+ATRIBUTOS:
+- numerador
+- denominador
+
+OPERACIONES:
+- suma
+- resta
+- multiplicación
+- división
+
+IMPORTANCIA:
+Se trabajó encapsulamiento y abstracción.
+
+-------------------------------------------------------------------------------
+          TDA CONJUNTO
+-------------------------------------------------------------------------------
+
+OPERACIONES:
+- unión
+- intersección
+- diferencia
+- pertenencia
+
+PROPIEDADES:
+- No admite repetidos.
+- No tiene orden específico.
+
+RELACION:
+Se implementó mediante interfaz y clase concreta.
+
+
+===============================================================================
+                              MANEJO DE MEMORIA
+===============================================================================
+
+DEFINICION:
+Administración de espacios de almacenamiento utilizados por el programa.
+
+TIPOS:
+- Memoria estática.
+- Memoria dinámica.
+
+
+===============================================================================
+                              MEMORIA ESTATICA
+===============================================================================
+
+DEFINICION:
+Memoria cuyo tamaño se define antes de ejecutar.
+
+EJEMPLOS:
+int datos[] = new int[25];
+
+CARACTERISTICAS:
+- Tamaño fijo.
+- Rápida.
+- Menor flexibilidad.
+
+VENTAJAS:
+- Fácil de manejar.
+- Menor consumo de procesamiento.
+
+DESVENTAJAS:
+- Puede desperdiciar memoria.
+- Límite fijo de datos.
+
+EJERCICIOS RELACIONADOS:
+- Lista
+- BubbleSort
+- ShellSort
+- MergeSort
+
+
+===============================================================================
+                          MEMORIA DINAMICA
+===============================================================================
+
+DEFINICION:
+Memoria que puede crecer o reducirse durante ejecución.
+
+EJEMPLO:
+ArrayList<Integer> lista;
+
+VENTAJAS:
+- Flexibilidad.
+- Mejor aprovechamiento.
+
+DESVENTAJAS:
+- Más compleja.
+- Mayor consumo.
+
+UTILIZACION:
+QuickSort utilizó ArrayList para capturar datos.
+
+RELACION:
+- Archivos.
+- Objetos.
+- Colecciones dinámicas.
+
+
+===============================================================================
+                      ALGORITMOS DE ORDENAMIENTO INTERNOS
+===============================================================================
+
+DEFINICION:
+Ordenan datos almacenados completamente en memoria RAM.
+
+CARACTERISTICAS:
+- Más rápidos.
+- Limitados por memoria disponible.
+
+TIPOS ESTUDIADOS:
+- Burbuja
+- QuickSort
+- ShellSort
+- Radix
+
+
+========================================================
+5.1.1 BURBUJA
+========================================================
+
+FUNCIONAMIENTO:
+Compara pares consecutivos e intercambia posiciones.
+
+COMPLEJIDAD:
+- O(n²)
+
+VENTAJAS:
+- Muy simple.
+
+DESVENTAJAS:
+- Muy lento con muchos datos.
+
+VARIABLES IMPORTANTES:
+- comparaciones
+- intercambios
+
+EJERCICIOS:
+- Ejercicio 21
+- Ejercicio 22
+
+OBSERVACION:
+Se contabilizaron comparaciones e intercambios.
+
+
+========================================================
+5.1.2 QUICKSORT
+========================================================
+
+FUNCIONAMIENTO:
+1. Elegir pivote.
+2. Particionar.
+3. Ordenar recursivamente.
+
+CONCEPTOS IMPORTANTES:
+- Recursividad.
+- Pivote.
+- Partición.
+
+COMPLEJIDAD:
+- Promedio: O(n log n)
+- Peor caso: O(n²)
+
+VENTAJAS:
+- Muy eficiente.
+
+DESVENTAJAS:
+- Recursión compleja.
+
+EJERCICIOS:
+- Ejercicio 25
+- Ejercicio 26
+
+RELACION CON CODIGO:
+Se utilizaron:
+- quickSort()
+- partition()
+
+OBSERVACION:
+Se contabilizaron comparaciones e intercambios.
+
+
+========================================================
+5.1.3 SHELLSORT
+========================================================
+
+DEFINICION:
+Mejora del método burbuja utilizando saltos.
+
+FUNCIONAMIENTO:
+- Ordena elementos separados por gaps.
+
+VENTAJAS:
+- Más eficiente que burbuja.
+
+DESVENTAJAS:
+- No siempre óptimo.
+
+COMPLEJIDAD:
+Depende de secuencia de gaps.
+
+EJERCICIOS:
+- Ejercicio 23
+- Ejercicio 24
+
+
+========================================================
+5.1.4 RADIX
+========================================================
+
+DEFINICION:
+Ordenamiento basado en dígitos.
+
+CARACTERISTICAS:
+- No usa comparaciones directas.
+- Trabaja por posiciones numéricas.
+
+VENTAJAS:
+- Muy rápido para enteros.
+
+DESVENTAJAS:
+- Limitado a ciertos tipos de datos.
+
+OBSERVACION:
+Aunque no se codificó directamente, se estudió como
+algoritmo de ordenamiento interno.
+
+
+========================================================
+5.2 ALGORITMOS DE ORDENAMIENTO EXTERNOS
+========================================================
+
+DEFINICION:
+Ordenamientos utilizados cuando los datos no caben en
+memoria RAM.
+
+UTILIZAN:
+- Archivos.
+- Lectura secuencial.
+- Archivos auxiliares.
+
+
+========================================================
+5.2.1 INTERCALACION
+========================================================
+
+DEFINICION:
+Fusiona archivos previamente ordenados.
+
+FUNCIONAMIENTO:
+- Leer línea de cada archivo.
+- Comparar.
+- Escribir menor elemento.
+
+VARIABLES IMPORTANTES:
+- window1
+- window2
+- windowS
+
+OBSERVACION:
+El profesor pidió utilizar variables llamadas "window"
+para representar ventanas de comparación.
+
+EJERCICIOS:
+- Ejercicio 27
+
+ARCHIVOS UTILIZADOS:
+- f1
+- f2
+- f3
+
+IMPORTANTE:
+No realiza partición.
+Solo fusiona archivos ya ordenados.
+
+
+========================================================
+5.2.2 MEZCLA DIRECTA
+========================================================
+
+DEFINICION:
+Ordenamiento externo que divide archivos en bloques
+de tamaño fijo y luego los fusiona.
+
+FUNCIONAMIENTO:
+1. Particionar.
+2. Ordenar sublistas.
+3. Intercalar.
+
+CONCEPTOS IMPORTANTES:
+- Partición.
+- Intercalación.
+- Archivos auxiliares.
+
+EJERCICIOS:
+- Ejercicio 28
+
+OBSERVACION:
+El profesor indicó que el algoritmo original debía
+particionar realmente los archivos para ser considerado
+Merge Sort real.
+
+
+========================================================
+5.2.3 MEZCLA NATURAL
+========================================================
+
+DEFINICION:
+Ordenamiento externo que detecta secuencias naturales
+ya ordenadas dentro del archivo.
+
+VENTAJAS:
+- Aprovecha secuencias existentes.
+- Menos particiones.
+
+FUNCIONAMIENTO:
+1. Detectar corridas naturales.
+2. Separarlas.
+3. Fusionarlas.
+
+DIFERENCIA CONTRA MEZCLA DIRECTA:
+- Mezcla directa:
+  usa bloques fijos.
+- Mezcla natural:
+  usa secuencias naturales.
+
+EJERCICIOS:
+- Ejercicio 29
+
+OBSERVACION:
+Se adaptó el código de mezcla directa para convertirlo
+en mezcla natural respetando:
+- estilo de código,
+- límite de columnas,
+- formato solicitado por el profesor.
+
+
+========================================================
+1.5 ANALISIS DE ALGORITMOS
+========================================================
+
+DEFINICION:
+Evaluación del rendimiento de un algoritmo.
+
+SE ANALIZA:
+- Tiempo.
+- Espacio.
+- Eficiencia.
+
+
+========================================================
+1.5.1 COMPLEJIDAD EN EL TIEMPO
+========================================================
+
+DEFINICION:
+Cantidad de operaciones realizadas.
+
+NOTACION:
+Big O.
+
+EJEMPLOS:
+- Búsqueda secuencial:
+  O(n)
+
+- Búsqueda binaria:
+  O(log n)
+
+- Burbuja:
+  O(n²)
+
+- QuickSort:
+  O(n log n)
+
+OBSERVACION:
+Mientras más pequeño el crecimiento, mejor eficiencia.
+
+
+========================================================
+1.5.2 COMPLEJIDAD EN EL ESPACIO
+========================================================
+
+DEFINICION:
+Cantidad de memoria utilizada.
+
+EJEMPLOS:
+- Arreglos estáticos.
+- Archivos auxiliares.
+- Recursividad.
+
+CASOS IMPORTANTES:
+QuickSort recursivo consume memoria adicional por pila
+de llamadas.
+
+
+========================================================
+1.5.3 EFICIENCIA DE LOS ALGORITMOS
+========================================================
+
+FACTORES:
+- Tiempo.
+- Espacio.
+- Facilidad de implementación.
+
+COMPARACIONES IMPORTANTES:
+
+========================================================
+BUSQUEDA
+========================================================
+
+Secuencial:
+- Simple.
+- Lenta.
+
+Binaria:
+- Más rápida.
+- Requiere ordenamiento.
+
+========================================================
+ORDENAMIENTOS
+========================================================
+
+Burbuja:
+- Muy simple.
+- Poco eficiente.
+
+Shell:
+- Intermedio.
+
+QuickSort:
+- Muy eficiente.
+
+Mezcla externa:
+- Ideal para archivos grandes.
+
+========================================================
+NOTAS IMPORTANTES DE CLASE
+========================================================
+
+- El enfoque de sistemas divide el algoritmo en:
+  META, DATA, PROCESO, RESULTADOS y NAVEGABILIDAD.
+
+- El profesor Cirino solicita:
+  * pseudocódigo textual,
+  * sin secciones separadas visualmente,
+  * variables descriptivas,
+  * ventanas llamadas "window",
+  * modularidad,
+  * validaciones robustas.
+
+- Se trabajó:
+  * lectura de archivos,
+  * escritura de archivos,
+  * validación de entrada,
+  * arreglos,
+  * objetos,
+  * recursividad,
+  * algoritmos internos,
+  * algoritmos externos.
+
+- En varios ejercicios se pidió:
+  * impresión en terminal,
+  * impresión en archivo,
+  * captura por teclado,
+  * captura por archivo.
+
+- Se reforzó:
+  * UML,
+  * encapsulamiento,
+  * interfaces,
+  * clases abstractas,
+  * modularización.
+
+========================================================
+FIN DE LAS NOTAS
+========================================================

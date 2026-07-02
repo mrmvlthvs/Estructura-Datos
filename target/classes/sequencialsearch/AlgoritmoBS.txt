@@ -1,0 +1,138 @@
+Tecnológico Nacional de México
+Instituto Tecnológico de León, Campus 1
+Carrera: Ingeniería en Sistemas Computacionales
+Materia: Estructura de Datos (Grupo B)
+Horario:
+Lunes y miércoles de 8:45 a 10:25
+Viernes de 8:45 a 9:35
+Alumna: Marlene Inés Moreno Velázquez
+Semestre: 3er semestre 26/1
+Profesor: Cirino Silva Tovar
+Ejercicio #3
+Fecha: 25/02/2026
+
+===== ALGORITMO BUSQUEDA SECUENCIAL =====
+
+1. meta():
+   Escribir("""
+   Para capturar y buscar datos de personas almacenadas en una
+   colección, se utilizará captura de datos por centinela y
+   búsqueda secuencial en un arreglo de apuntadores a objetos.
+   """);
+
+2.1 data():
+   Persona grupo[] = new Persona[25];
+   String nombre, control, fNac;
+   double peso, talla;
+   int cuenta = 0;
+
+   Escribir("Deme el nombre:");
+   nombre = ?;
+   mientras (nombre != "fin" y cuenta < 25) empezar
+      Escribir("De # de control:");
+      control = ?;
+      Escribir("De Fecha de Nacimiento:");
+      fNac = ?;
+      Escribir("Peso de la persona:");
+      peso = ?;
+      Escribir("Estatura de la persona:");
+      talla = ?;
+      grupo[cuenta] =
+         nueva Persona(nombre, control, fNac, peso, talla);
+      cuenta = cuenta + 1;
+      Escribir("Deme el nombre:");
+      nombre = ?;
+   terminar
+   si (cuenta == 25) empezar
+      Escribir("Limite del arreglo alcanzado.");
+   terminar
+
+2.2 lectura(archi):
+   Persona grupo[] = new Persona[25];
+   Persona pers;
+   cuenta = 0;
+   in = abrir(archi);
+
+   mientras (!eof(in) y cuenta < 25) empezar
+      pers = leerRegistro(in);
+      grupo[cuenta] = nueva Persona();
+      grupo[cuenta].setNombre(pers.getNombre());
+      grupo[cuenta].setControl(pers.getControl());
+      grupo[cuenta].setFNac(pers.getFNac());
+      grupo[cuenta].setPeso(pers.getPeso());
+      grupo[cuenta].setTalla(pers.getTalla());
+      cuenta = cuenta + 1;
+   terminar
+   cerrar(in);
+
+2.3 entry(prompt):
+   Escribir(prompt);
+   cadena = ?;
+   retornar cadena;
+
+3. buscar(name): regresa un entero
+   encontrado = false;
+   compara = 0;
+
+   desde indice = 0 hasta indice < cuenta ;
+   incrementar indice para
+      empezar
+         compara = compara + 1;
+         si (name.equals(grupo[indice].getNombre()))
+         empezar
+            encontrado = true;
+            retornar indice;
+         terminar
+      terminar
+   retornar -1;
+
+4.0 salida(name, pos):
+   Escribir("El nombre solicitado: " + name);
+   si (pos != -1) empezar
+      Escribir("Esta en la posicion " + pos);
+      Escribir("Su numero de control es: "
+               + grupo[pos].getControl());
+      Escribir("Nacio el: "
+               + grupo[pos].getFNac());
+      Escribir("Su peso es: "
+               + grupo[pos].getPeso());
+      Escribir("Su talla es: "
+               + grupo[pos].getTalla());
+   terminar
+   de otro modo empezar
+      Escribir("No fue encontrado en el grupo.");
+   terminar
+   Escribir("Se realizaron "
+            + compara
+            + " comparaciones para la busqueda.");
+
+5.0 navegabilidad():
+   repetir empezar
+      Escribir("Opciones de busqueda:");
+      Escribir("__________________________________");
+      Escribir("1. Introducir datos por teclado");
+      Escribir("2. Leer datos de archivo");
+      Escribir("3. Buscar persona por nombre");
+      Escribir("4. Salir");
+      Escribir("__________________________________");
+      Escribir("Su eleccion:");
+      op = ?;
+      segun(op) empezar
+         caso 1:
+            data();
+            romper;
+         caso 2:
+            archi = entry("Nombre del archivo a leer:");
+            read(archi);
+            romper;
+         caso 3:
+            name = entry("Nombre de la persona a buscar:");
+            pos = search(name);
+            outs(name, pos);
+            romper;
+         caso 4:
+            Escribir("Fin del programa.");
+            romper;
+      terminar
+   hasta que (op == 4)
+

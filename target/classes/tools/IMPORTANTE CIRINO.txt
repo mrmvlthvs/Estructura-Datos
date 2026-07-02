@@ -1,0 +1,4 @@
+Estudiar en el libro de JOYANES
+Capitulo 1 - Algoritmos
+Capitulo 6 - Algoritmos de ordenacion y busqueda
+Capitulo 7 - Algoristmos de ordenacion de archivos
